@@ -5,7 +5,6 @@ class CreateTechnicianBookings < ActiveRecord::Migration[6.0]
       t.integer :show_id
       t.datetime :call_time
       t.datetime :out_time
-      t.integer :vendor_id
 
       t.timestamps
     end

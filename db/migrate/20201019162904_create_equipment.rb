@@ -5,6 +5,7 @@ class CreateEquipment < ActiveRecord::Migration[6.0]
       t.string :manufacturer
       t.integer :quantity
       t.string :category
+      t.string :sub_category
       t.integer :vendor_id
 
       t.timestamps
