@@ -6,6 +6,7 @@ class CreateEquipmentBookings < ActiveRecord::Migration[6.0]
       t.integer :quantity
       t.integer :quantity_checked_out
       t.integer :quantity_checked_in
+      t.integer :vendor_id
 
       t.timestamps
     end
