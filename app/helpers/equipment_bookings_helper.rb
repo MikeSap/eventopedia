@@ -1,0 +1,2 @@
+module EquipmentBookingsHelper
+end

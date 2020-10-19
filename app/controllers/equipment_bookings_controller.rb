@@ -1,0 +1,2 @@
+class EquipmentBookingsController < ApplicationController
+end

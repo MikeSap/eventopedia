@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  show_id: 1
+  start: 2020-10-19 11:34:50
+  end: 2020-10-19 11:34:50
+
+two:
+  user_id: 1
+  show_id: 1
+  start: 2020-10-19 11:34:50
+  end: 2020-10-19 11:34:50

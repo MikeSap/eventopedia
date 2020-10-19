@@ -1,0 +1,2 @@
+class TechnicianBookingsController < ApplicationController
+end
