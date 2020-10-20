@@ -36,7 +36,6 @@
 
         <% if @current_user.permission_class.create_users%>
           <%= link_to 'Edit User', edit_user_path(@user)%>
-          <%= link_to 'Delete User', user_path(@user), method: "delete", data: { confirm: "Are you sure?" }%>
         <%end%>
         
 <%else%>
