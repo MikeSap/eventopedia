@@ -12,5 +12,5 @@ class UsersController < ApplicationController
     #   params.require(:user).permit(:name, :password, :password_confirmation)
     # end
 
-    #this will not work if we're not creating a user through the new vendor portal
+    #this will only work to create user thru new vendor portal and to create owner
 end
