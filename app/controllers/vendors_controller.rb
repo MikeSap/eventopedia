@@ -7,7 +7,7 @@ class VendorsController < ApplicationController
     def create
         @vendor = Vendor.new(vendor_params)
         return  render :new unless @vendor.save
-        @user =  User.new(username: params[:user][:username], password: params[:user][:password], password_confirmation: params[:user][:password_confirmation], vendor: @vendor, permission_class_id: @vendor.permission_classes.first.id)
+        @user =  User.new(user_params.merge(vendor: @vendor, permission_class_id: @vendor.permission_classes.first.id))
         return  render :new unless @user.save
         session[:user_id] = @user.id
         redirect_to '/'
@@ -19,8 +19,8 @@ class VendorsController < ApplicationController
         params.require(:vendor).permit(:name, :address, :url, :phone_number, :contact_email)
     end
 
-    def user_params(*args)
-        params.require(:user).permit(*args)
+    def user_params
+        params.require(:user).permit(:username, :password, :password_confirmation)
     end
 
 end

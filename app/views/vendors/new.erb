@@ -35,15 +35,15 @@
 <%end%><br>
 
 <h3>Owner Info </h3>
-<%=fields_for :user do |user_field|%>
-<%=user_field.label :username %><br>
-<%=user_field.text_field :username%><br>
+  <%=fields_for :user do |user_field|%>
+  <%=user_field.label :username %><br>
+  <%=user_field.text_field :username%><br>
 
-<%=user_field.label :password %><br>
-<%=user_field.password_field :password%><br>
+  <%=user_field.label :password %><br>
+  <%=user_field.password_field :password%><br>
 
-<%=user_field.label :password_confirmation %><br>
-<%=user_field.password_field :password_confirmation%><br>
+  <%=user_field.label :password_confirmation %><br>
+  <%=user_field.password_field :password_confirmation%><br>
 
 <%end%><br>
 
