@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   # resources :permission_classes
   # resources :technician_bookings
   # resources :equipment_bookings
-  # resources :equipment
+  resources :equipment
   # resources :shows
   resources :vendors, only: [:new, :create]
   resources :sessions, only: [:new ,:destroy]

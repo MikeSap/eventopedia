@@ -1,0 +1,17 @@
+<table>
+    <tr>
+    <th>Equipment Name</th>
+    <th>Quantity Owned</th>
+    <th>Category</th>
+    <th>SubCategory</th>
+    </tr>
+<% @equipment.each do |e|%>
+    <tr>
+    <td><%= link_to e.name, equipment_path(e) %></td>
+    <td> <%= e.quantity %> </td>
+    <td> <%= e.category %> </td>
+    <td> <%= e.sub_category %> </td>
+    </tr>
+<% end %>
+</table>
+<%= link_to 'Add Equipment', new_equipment_path %>
