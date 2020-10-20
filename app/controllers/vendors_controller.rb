@@ -1,5 +1,9 @@
 class VendorsController < ApplicationController
     skip_before_action :require_login, only: [:new, :create]
+<<<<<<< HEAD
+=======
+
+>>>>>>> github/mps_finish_users
     def new
         @vendor = Vendor.new
     end

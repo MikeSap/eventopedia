@@ -1,6 +1,10 @@
 class SessionsController < ApplicationController
     skip_before_action :require_login, only: [:login, :create]
+<<<<<<< HEAD
   
+=======
+
+>>>>>>> github/mps_finish_users
     def index
     end    
 

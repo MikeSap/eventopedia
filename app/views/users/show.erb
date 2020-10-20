@@ -8,7 +8,10 @@
       <th>Venue</th>
       <th>Call Time</th>
       <th>Out Time</th>
-      <th>Tech</th>
+      <% if @current_user.permission_class.create_users%>
+        <th>Edit User</th>
+        <th>Delete User</th>
+      <%end%>
     </tr>
 
     <% @gigs.each do |gig| %>
@@ -17,16 +20,32 @@
         <td> <%= gig.show.venue.titleize %></td> 
         <td> <%= gig.call_time %></td> 
         <td> <%=gig.out_time%> </td>
-        <td> <%=gig.user.username%> </td>
-      </tr>     
+      </tr>   
+        
+        <% if @current_user.permission_class.create_users%>
+          <th><%= link_to 'Edit User', edit_user_path(gig.user)%></th>
+          <th> <%= link_to 'Delete User', user_path(gig.user), method: "delete", data: { confirm: "Are you sure?" }%></th>
+        <%end%>        
+       
     <% end %>
       
   </table>
 
 <%elsif @user.permission_class.title == "admin"%>
     <h1><%=@user.username%> has admin priveleges.</h1>
+
+        <% if @current_user.permission_class.create_users%>
+          <%= link_to 'Edit User', edit_user_path(@user)%>
+          <%= link_to 'Delete User', user_path(@user), method: "delete", data: { confirm: "Are you sure?" }%>
+        <%end%>
+        
 <%else%>
     <h1>Get back in the warehouse, you're out of your element <%=@user.username.titleize%></h1>
+    
+        <% if @current_user.permission_class.create_users%>
+         <%= link_to 'Edit User', edit_user_path(@user)%>
+         <%= link_to 'Delete User', user_path(@user), method: "delete", data: { confirm: "Are you sure you want to delete #{@user.username}?" }%>
+        <%end%>
 
 <%end%>
 
