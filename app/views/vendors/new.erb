@@ -6,6 +6,14 @@
         </ul>
     <% end %>
 
+    <% if @vendor.errors.any? %>
+        <ul>
+          <% @vendor.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+    <% end %>
+
 
 <%= form_for vendors_path, url: vendors_path do |f| %>
 <h3>Vendor Info</h3>
@@ -27,7 +35,7 @@
 <%end%><br>
 
 <h3>Owner Info </h3>
-<%=fields_for :user, @user do |user_field|%>
+<%=fields_for :user do |user_field|%>
 <%=user_field.label :username %><br>
 <%=user_field.text_field :username%><br>
 
