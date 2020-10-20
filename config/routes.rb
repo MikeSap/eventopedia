@@ -16,7 +16,8 @@ Rails.application.routes.draw do
 
   
   #this is weird, but works, allows redirects within controllers
-  get 'sessions/vendor_create_login' => 'sessions#vendor_create_login'
+  #sessions vendor create did not work, rerouted to login_path instead
+  # get 'sessions/vendor_create_login' => 'sessions#vendor_create_login'
   get 'users/create' => 'users#create'
 
 
