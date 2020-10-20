@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   
   
   get 'login' => 'sessions#login'
-  post '/login' => 'sessions#home'
+  post 'login' => 'sessions#create'
   # post '/logout' => 'sessions#destroy'
 
 

@@ -1,0 +1,18 @@
+<% if @user.errors.any? %>
+        <ul>
+          <% @user.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+    <% end %>
+
+
+
+<%= form_for new_session_path do |f| %>
+
+<%=fields_for :vendor, @vendor do |vendor_field|%>
+<%=vendor_field.text_field :name%>
+<%end%>
+
+<%=f.submit "Submit"%>
+<%end%>
