@@ -8,11 +8,10 @@
 
 si = Vendor.create(name:"Sound Investment", address: "123 Main St.", url:"www.sound-investment.com", phone_number:"312-666-4200", contact_email: "eventopedia@soundinvestment.com")
 
-admin = PermissionClass.create(title: "admin", vendor: si, create_users: true, create_equipment:true, create_show:true, book_technician:true, book_equipment:true, bookable: false )
 tech = PermissionClass.create(title: "tech", vendor:si, create_users: false, create_equipment:false, create_show:false, book_technician:false, book_equipment:true, bookable:true )
 ware = PermissionClass.create(title: "warehouse", vendor:si, create_users: false, create_equipment:true, create_show:false, book_technician:false, book_equipment:true, bookable:false )
 
-peter = User.create(username:"peter", password: "123", password_confirmation: "123", permission_class: admin, vendor: si)
+peter = User.create(username:"peter", password: "123", password_confirmation: "123", permission_class_id: 1, vendor: si)
 mike = User.create(username:"mike", password: "123", password_confirmation: "123", permission_class:tech, vendor:si)
 tom = User.create(username:"tom", password: "123", password_confirmation: "123", permission_class:tech, vendor:si)
 marc = User.create(username:"marc", password: "123", password_confirmation: "123", permission_class: ware, vendor:si)
