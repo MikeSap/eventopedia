@@ -7,12 +7,12 @@ Rails.application.routes.draw do
   # resources :equipment
   # resources :shows
   # resources :users
-  # resources :vendors
+  resources :vendors, only: [:new, :create]
   resources :sessions, only: [:new, :create, :destroy]
   
   
-  # get '/login' => 'sessions#new'
-  # post '/login' => 'sessions#create'
+  get 'login' => 'sessions#login'
+  post '/login' => 'sessions#home'
   # post '/logout' => 'sessions#destroy'
 
 

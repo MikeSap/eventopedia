@@ -1,7 +1,10 @@
 class SessionsController < ApplicationController
-    before_action :require_login, only: [:index, :destroy]
+    before_action :require_login, only: [:home, :destroy]
   
     def index
+    end
+
+    def login
     end
     
     def new
@@ -13,6 +16,9 @@ class SessionsController < ApplicationController
       return redirect_to '/sessions/new' unless user
       session[:user_id] = user.id
       redirect_to '/'
+    end
+
+    def home
     end
   
     def destroy

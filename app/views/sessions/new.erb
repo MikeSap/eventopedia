@@ -1,22 +1,2 @@
-<% if @user.errors.any? %>
-        <ul>
-          <% @user.errors.full_messages.each do |msg| %>
-            <li><%= msg %></li>
-          <% end %>
-        </ul>
-    <% end %>
 
 
-
-<%= form_for sessions_path do |f| %>
-
-<%=f.label :username%>
-<%=f.text_field :user_name %><br>
-
-<%=f.label :password%>
-<%=f.password_field :password%><br>
-
-<%=f.submit "Submit"%>
-Or <%= link_to('sessions/new') { 'Register Your Company' } %>
-
-<%end%>
