@@ -1,0 +1,34 @@
+<% if @user.permission_class.bookable %>
+  <h2><%=@user.username.titleize%>, <%= @user.permission_class.title.titleize %> Schedule </h2>
+
+  <table>
+
+    <tr>
+      <th>Show</th>
+      <th>Venue</th>
+      <th>Call Time</th>
+      <th>Out Time</th>
+      <th>Tech</th>
+    </tr>
+
+    <% @gigs.each do |gig| %>
+      <tr>
+        <td> <%= gig.show.name.titleize %></td> 
+        <td> <%= gig.show.venue.titleize %></td> 
+        <td> <%= gig.call_time %></td> 
+        <td> <%=gig.out_time%> </td>
+        <td> <%=gig.user.username%> </td>
+      </tr>     
+    <% end %>
+      
+  </table>
+
+<%elsif @user.permission_class.title == "admin"%>
+    <h1><%=@user.username%> has admin priveleges.</h1>
+<%else%>
+    <h1>Get back in the warehouse, you're out of your element <%=@user.username.titleize%></h1>
+
+<%end%>
+
+
+

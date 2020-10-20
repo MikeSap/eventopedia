@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
     before_action :current_user, :require_login
 
     def current_user
-      @user = (User.find_by(id: session[:user_id]) || User.new)      
+      @current_user = (User.find_by(id: session[:user_id]) || User.new)      
     end
   
     def logged_in
