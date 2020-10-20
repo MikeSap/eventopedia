@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-    before_action :require_login, only: [:index, :home, :destroy]
+    skip_before_action :require_login, only: [:login, :create]
   
     def index
     end    

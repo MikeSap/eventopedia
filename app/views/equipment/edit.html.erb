@@ -1,0 +1,25 @@
+<% if @equipment.errors.any? %>
+        <ul>
+          <% @equipment.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+    <% end %>
+<%= form_for @equipment do |f| %>
+    <%=f.label :name %><br>
+    <%=f.text_field :name %><br>
+
+    <%=f.label :manufacturer %><br>
+    <%=f.text_field :manufacturer %><br>
+
+    <%=f.label 'Quantity Owned' %><br>
+    <%=f.number_field :quantity %><br>
+
+    <%=f.label :category %><br>
+    <%=f.text_field :category %><br>
+
+    <%=f.label "Sub-Category" %><br>
+    <%=f.text_field :sub_category %><br>
+
+    <%=f.submit "Submit"%>
+<% end %>
