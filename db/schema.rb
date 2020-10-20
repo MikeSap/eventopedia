@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 2020_10_19_164322) do
     t.boolean "create_show"
     t.boolean "book_technician"
     t.boolean "book_equipment"
+    t.boolean "bookable"
     t.integer "vendor_id"
     t.string "title"
     t.datetime "created_at", precision: 6, null: false
@@ -46,7 +47,9 @@ ActiveRecord::Schema.define(version: 2020_10_19_164322) do
   end
 
   create_table "shows", force: :cascade do |t|
+    t.string "name"
     t.string "venue"
+    t.string "client"
     t.datetime "start"
     t.datetime "end"
     t.integer "vendor_id"

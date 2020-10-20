@@ -1,11 +1,35 @@
 class UsersController < ApplicationController
 
+    def index
+        @users = @current_user.vendor.users
+    end
+
+    def new
+        @user = User.new
+    end
+
     def create
         @user = User.new(user_params)
-        return  redirect_to '/vendors/new' unless @user.save
-        session[:user_id] = @user.id
-        redirect_to '/'
+        return  render :new unless @user.save
+        redirect_to users_path
     end
+
+    def show        
+        @user = User.find(params[:id])  
+        @gigs = @user.technician_bookings        
+    end
+
+    def edit
+
+    end
+
+    def update
+
+    end
+
+    def destroy
+
+    end  
 
     private
     

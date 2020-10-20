@@ -1,0 +1,14 @@
+<h2>Staff</h2>
+<table>
+<tr>
+<th>Name</th>
+<th>Role</th>
+</tr>
+
+  <% @users.each do |user| %>
+      <tr>
+     <td> <%= link_to user.username, user_path(user) %></td> 
+     <td> <%=user.permission_class.title%> </td>
+     </tr>
+  <% end %>
+</table>
