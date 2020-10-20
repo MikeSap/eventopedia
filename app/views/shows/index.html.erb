@@ -1,0 +1,19 @@
+<table>
+    <tr>
+    <th>Name</th>
+    <th>Venue</th>
+    <th>Client</th>
+    <th>Start</th>
+    <th>End</th>
+    </tr>
+<% @shows.each do |s|%>
+    <tr>
+    <td><%= link_to s.name, show_path(s) %></td>
+    <td> <%= s.venue %> </td>
+    <td> <%= s.client %> </td>
+    <td> <%= s.start %> </td>
+    <td> <%= s.end %> </td>
+    </tr>
+<% end %>
+</table>
+<%= link_to 'Add Show', new_show_path %>

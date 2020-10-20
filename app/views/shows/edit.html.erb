@@ -1,0 +1,27 @@
+<% if @show.errors.any? %>
+        <ul>
+          <% @show.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+    <% end %>
+
+<h3>Add show to schedule:</h3>
+<%= form_for @show do |f| %>
+    <%=f.label :name %><br>
+    <%=f.text_field :name %><br>
+
+    <%=f.label :venue %><br>
+    <%=f.text_field :venue %><br>
+
+    <%=f.label :client %><br>
+    <%=f.text_field :client %><br>
+
+    <%=f.label :start %><br>
+    <%=f.datetime_field :start %><br>
+
+    <%=f.label :end %><br>
+    <%=f.datetime_field :end %><br>
+
+    <%=f.submit "Submit"%>
+<% end %>
