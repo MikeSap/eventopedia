@@ -18,6 +18,12 @@ class SessionsController < ApplicationController
       redirect_to '/'
     end
 
+    def vendor_create_login
+      byebug     
+      session[:user_id] = @user.id
+      redirect_to '/'
+    end
+
     def home
      
     end

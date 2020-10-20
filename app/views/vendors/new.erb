@@ -7,17 +7,36 @@
     <% end %>
 
 
-
 <%= form_for vendors_path, url: vendors_path do |f| %>
-
+<h3>Vendor Info</h3>
 <%=fields_for :vendor, @vendor do |vendor_field|%>
-<%=vendor_field.label :vendor_name %>
-<%=vendor_field.text_field :name%>
+<%=vendor_field.label :name%><br>
+<%=vendor_field.text_field :name%><br>
+
+<%=vendor_field.label :address%><br>
+<%=vendor_field.text_field :address%><br>
+
+<%=vendor_field.label :website %><br>
+<%=vendor_field.url_field :url%><br>
+
+<%=vendor_field.label :phone_number %><br>
+<%=vendor_field.telephone_field :phone_number%><br>
+
+<%=vendor_field.label :email %><br>
+<%=vendor_field.email_field :contact_email %><br>
 <%end%><br>
 
+<h3>Owner Info </h3>
 <%=fields_for :user, @user do |user_field|%>
-<%=user_field.label :username %>
-<%=user_field.text_field :username%>
+<%=user_field.label :username %><br>
+<%=user_field.text_field :username%><br>
+
+<%=user_field.label :password %><br>
+<%=user_field.password_field :password%><br>
+
+<%=user_field.label :password_confirmation %><br>
+<%=user_field.password_field :password_confirmation%><br>
+
 <%end%><br>
 
 
