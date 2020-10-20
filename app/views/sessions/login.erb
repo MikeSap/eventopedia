@@ -1,4 +1,4 @@
-<h1>Welcome to Eventopedia, <%=@user.username%></h1>
+<h1>Welcome to Eventopedia, <%=@user.username%>.</h1>
 
 
 <% if @user.errors.any? %>
@@ -11,7 +11,7 @@
 
 
 
-<%= form_for login_path do |f| %>
+<%= form_for :user do |f| %>
 
 <%=f.label :username%>
 <%=f.text_field :username %><br>
@@ -21,5 +21,4 @@
 
 <%=f.submit "Submit"%>
 <%end%><br>
- <%= link_to 'Register Your Company', 'sessions/new' %>
-</p>
+ <%= link_to 'Register Your Vendor', 'vendors/new' %>

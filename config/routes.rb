@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   # resources :shows
   # resources :users
   resources :vendors, only: [:new, :create]
-  resources :sessions, only: [:new, :create, :destroy]
+  resources :sessions, only: [:new ,:destroy]
   
   
   get 'login' => 'sessions#login'

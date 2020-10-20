@@ -4,15 +4,16 @@ class SessionsController < ApplicationController
     def index
     end
 
+    def new
+
+    end
 
     def login
     end
 
     def create
-        byebug
-      user = User.find_by(name: params['/login'][:username])
-      user = user.try(:authenticate, params['/login'][:password])   
-      return redirect_to '/login' unless user
+      user = User.find_by(username: params[:user][:username])
+      return redirect_to '/login' unless user.try(:authenticate, params[:user][:password])   
       session[:user_id] = user.id
       redirect_to '/'
     end
@@ -27,8 +28,8 @@ class SessionsController < ApplicationController
       redirect_to '/'
     end
 
-    def session_params
-        #takes in vendor form params[:vendor][:user] and makes it possible to run through create to log them in 
-    end
+    # def session_params
+    #     #takes in vendor form params[:vendor][:user] and makes it possible to run through create to log them in 
+    # end
 
 end
