@@ -3,5 +3,5 @@
 <h3>Quantity owned: <%= @equipment.quantity %></h3>
 <h3>Manufactured by: <%= @equipment.manufacturer %></h3>
 <%= link_to 'Edit', edit_equipment_path(@equipment) %>
-<%= link_to 'Delete', equipment_path(@equipment), method: "delete"%>
+<%= link_to 'Delete', equipment_path(@equipment), method: "delete", data: { confirm: "Are you sure you want to delete #{@equipment.name}?" }%>
 
