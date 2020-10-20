@@ -2,11 +2,7 @@ class SessionsController < ApplicationController
     before_action :require_login, only: [:index, :home, :destroy]
   
     def index
-    end
-
-    def new
-
-    end
+    end    
 
     def login
     end
@@ -24,10 +20,6 @@ class SessionsController < ApplicationController
     #   session[:user_id] = @user.id
     #   redirect_to '/'
     # end
-
-    def home
-     
-    end
   
     def destroy
       session.delete :user_id
@@ -35,8 +27,5 @@ class SessionsController < ApplicationController
       redirect_to '/'
     end
 
-    # def session_params
-    #     #takes in vendor form params[:vendor][:user] and makes it possible to run through create to log them in 
-    # end
 
 end
