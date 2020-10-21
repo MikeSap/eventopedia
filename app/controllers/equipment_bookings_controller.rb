@@ -18,6 +18,13 @@ class EquipmentBookingsController < ApplicationController
         redirect_to show_path(show)
     end
 
+    def increment
+        equipment_booking = EquipmentBooking.find(params[:id])
+        equipment_booking.quantity = equipment_booking.quantity.to_i + params[:increment].to_i
+        equipment_booking.save
+        redirect_to show_path(equipment_booking.show)
+    end
+
     private
 
     def eb_params
