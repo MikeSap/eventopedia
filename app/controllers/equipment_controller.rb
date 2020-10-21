@@ -1,4 +1,7 @@
 class EquipmentController < ApplicationController
+    before_action :can_create_equipment, only: [:new, :create, :edit, :update, :destroy]
+    helper_method :can_create_equipment
+
     def index
         @equipment = @current_user.vendor.equipment
     end
@@ -37,5 +40,12 @@ class EquipmentController < ApplicationController
 
     def equipment_params
         params.require(:equipment).permit(:name, :manufacturer, :quantity, :category, :sub_category)
+    end
+
+    def can_create_equipment
+        current_user.permission_class.create_equipment
+        flash[:alert] = "You dont have permission to access and edit inventory"
+        return redirect_to request.referrer unless request.referrer == nil
+        redirect_to '/'
     end
 end

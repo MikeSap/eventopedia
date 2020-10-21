@@ -1,7 +1,15 @@
 <h1><%= @equipment.name %></h1>
+
+<div class= "error">
+<% if !flash[:alert].nil? %> 
+   <%= flash[:alert] %>
+<% end %>
+</div>
+
 <h3>Category: <%= "#{@equipment.category} > #{@equipment.sub_category}" %> </h3>
 <h3>Quantity owned: <%= @equipment.quantity %></h3>
 <h3>Manufactured by: <%= @equipment.manufacturer %></h3>
+<%if @current_user.permission_class.create_equipment %>
 <%= link_to 'Edit', edit_equipment_path(@equipment) %>
 <%= link_to 'Delete', equipment_path(@equipment), method: "delete", data: { confirm: "Are you sure you want to delete #{@equipment.name}?" }%>
-
+<%end%>

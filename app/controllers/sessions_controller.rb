@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
     skip_before_action :require_login, only: [:login, :create]
+    
     def index
     end    
 
@@ -18,6 +19,5 @@ class SessionsController < ApplicationController
       session.delete :user_id  
       redirect_to '/'
     end
-
 
 end

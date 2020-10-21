@@ -1,3 +1,8 @@
 <h1>Welcome to Eventopedia, <%=@current_user.username%>.</h1>
 
+<div class= "error">
+<% if !flash[:alert].nil? %> 
+   <%= flash[:alert] %>
+<% end %>
+</div>
 

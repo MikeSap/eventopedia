@@ -1,4 +1,6 @@
 class ShowsController < ApplicationController
+    before_action :can_create_show, only: [:new, :create, :edit, :destroy]
+    
     def index
         @shows = current_user.vendor.shows
     end
@@ -37,5 +39,13 @@ class ShowsController < ApplicationController
 
     def show_params
         params.require(:show).permit(:name, :venue, :client, :start, :end)
+    end
+
+    def can_create_show
+        if !current_user.permission_class.create_show
+        flash[:alert] = "You dont have permission to access show records"
+        return redirect_to request.referrer unless request.referrer == nil
+        redirect_to '/'
+        end
     end
 end

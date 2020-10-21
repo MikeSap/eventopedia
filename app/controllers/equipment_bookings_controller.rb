@@ -1,5 +1,5 @@
 class EquipmentBookingsController < ApplicationController
-    before_action :can_book_equipment
+    before_action :can_book_equipment, only: [:new, :create, :destroy, :increment]
     
     def new
         @equipment_booking = EquipmentBooking.new
@@ -33,4 +33,12 @@ class EquipmentBookingsController < ApplicationController
     def eb_params
         params.require(:equipment_booking).permit(:equipment_id, :show_id, :quantity)
     end
+
+    def can_book_equipment
+        if !current_user.permission_class.book_equipment
+        flash[:alert] = "You dont have permission to access show equipment changes"
+        return redirect_to request.referrer unless request.referrer == nil
+        redirect_to '/'
+        end
+      end
 end

@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+    before_action :can_create_users, only: [:new, :create]
+    # before_action :verify_self, only: [:update, :edit]
 
     def index
         @users = @current_user.vendor.users
@@ -43,5 +45,13 @@ class UsersController < ApplicationController
     def user_params
       params.require(:user).permit(:username, :password, :password_confirmation, :permission_class_id)
     end
+
+    def can_create_users
+        if !current_user.permission_class.create_users
+        flash[:alert] = "You dont have permission to create users"
+        return redirect_to request.referrer unless request.referrer == nil
+        redirect_to '/'
+        end
+      end
 
 end

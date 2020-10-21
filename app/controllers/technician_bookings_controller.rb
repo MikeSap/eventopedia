@@ -26,4 +26,12 @@ class TechnicianBookingsController < ApplicationController
     def tb_params
         params.require(:technician_booking).permit(:user_id, :show_id, :call_time, :out_time)
     end
+
+    def can_book_tech
+        if !current_user.permission_class.book_technician
+        flash[:alert] = "You dont have permission to book techs on a show"
+        return redirect_to request.referrer unless request.referrer == nil
+        redirect_to '/'
+        end
+      end
 end

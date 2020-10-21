@@ -14,4 +14,6 @@
     </tr>
 <% end %>
 </table>
+<%if @current_user.permission_class.create_equipment %>
 <%= link_to 'Add Equipment', new_equipment_path %>
+<%end%>

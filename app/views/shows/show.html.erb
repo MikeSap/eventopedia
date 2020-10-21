@@ -1,6 +1,14 @@
 <h1><%= @show.name %></h1>
+<%if @current_user.permission_class.create_show%>
 <%= link_to 'Edit', edit_show_path(@show) %>
 <%= link_to 'Delete', show_path(@show), method: "delete", data: { confirm: "Are you sure you want to delete #{@show.name}?" }%>
+<%end%>
+<div class= "error">
+    <% if !flash[:alert].nil? %> 
+    <%= flash[:alert] %>
+    <% end %>
+</div> 
+
 <h3>Venue: <%= @show.venue %></h3>
 <h3>Client: <%= @show.client %></h3>
 <h3>Start: <%= @show.start %></h3>
@@ -8,11 +16,13 @@
 
 <% unless @show.equipment.empty? %>
     <table>
-    <caption style='caption-side: top'>Equipment Required</caption>
+    <caption style='caption-side: top'>Equipment Required</caption>           
         <tr>
             <th>Equipment Name</th>
             <th>Quantity</th>
+            <%if @current_user.permission_class.book_equipment%>
             <th></th>
+            <%end%>
         </tr>
         <% @show.equipment_bookings.each do |e|%>
         <tr>
@@ -22,13 +32,16 @@
                 <%= e.quantity %>
                 <%= button_to '-', equipment_booking_path(e), params: {increment: -1}%>
             </td>
+            <%if @current_user.permission_class.book_equipment%>
             <td><%= button_to 'Delete', equipment_booking_path(e), method: 'delete' %></td>
+            <%end%>
         </tr>
         <% end %>
     </table>
 <% end %>
+<%if @current_user.permission_class.book_equipment%>
 <%= link_to 'Add equipment to Show', "/equipment_bookings/new/#{@show.id}" %>
-
+<%end%>
 
 <% unless @show.users.empty? %>
     <table>
@@ -37,16 +50,22 @@
             <th>Technician</th>
             <th>Call Time</th>
             <th>Out Time</th>
+            <%if @current_user.permission_class.book_technician%>
             <th></th>
+            <%end%>
         </tr>
         <% @show.technician_bookings.each do |t|%>
         <tr>
             <td><%= link_to t.user.username, user_path(t.user) %></td>
             <td><%= t.call_time %></td>
             <td><%= t.out_time %></td>
+            <%if @current_user.permission_class.book_technician%>
             <td><%= button_to 'Delete', technician_booking_path(t), method: 'delete' %></td>
+            <%end%>
         </tr>
         <% end %>
     </table>
 <% end %>
+<%if @current_user.permission_class.book_technician%>
 <%= link_to 'Add staff to Show', "/technician_bookings/new/#{@show.id}" %>
+<%end%>
