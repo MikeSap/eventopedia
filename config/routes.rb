@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   root 'sessions#index'
 
   # resources :permission_classes
-  resources :technician_bookings, only: [:new, :creat, :destroy], path_names: {new: 'new/:show_id' }
+  resources :technician_bookings, only: [:new, :create, :destroy], path_names: {new: 'new/:show_id' }
   resources :equipment_bookings, only: [:new, :create, :destroy], path_names: {new: 'new/:show_id' }
   resources :equipment
   resources :shows
