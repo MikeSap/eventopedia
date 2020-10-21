@@ -20,12 +20,14 @@ table, th, td {
   padding: 15px;
 }
 
-/* 
+.error {
+  color: red;
+}
+
+
 .field_with_errors {
-  {
-    border: 1px solid red;
-  }
-} */
+    color: red;
+}
 
 tr:nth-child(even) {
   background-color: lightsteelblue;
