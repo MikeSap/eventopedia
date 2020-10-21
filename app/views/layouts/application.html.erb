@@ -38,10 +38,14 @@
                 <a class="nav-link" href="/users">Manage <%= @current_user.vendor.name %></a>
               </li>
             <% end %>
-          
         </ul>
-        <ul class="my-2 my-lg-0">
-          <a class="nav-link" href="/logout">logout</a>
+        <ul class="navbar-nav my-2 my-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" href="/users/<%= @current_user.id %>"><%= @current_user.username %></a>
+          </li>
+          <li>
+            <a class="nav-link" href="/logout">logout</a>
+          </li>
         </ul>
         <% end %>
       </div>
