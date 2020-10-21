@@ -26,6 +26,7 @@ table, th, td {
     border: 1px solid red;
   }
 } */
+
 tr:nth-child(even) {
   background-color: lightsteelblue;
 }

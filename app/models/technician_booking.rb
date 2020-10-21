@@ -4,25 +4,8 @@ class TechnicianBooking < ApplicationRecord
 
     validates :user, :show, :call_time, :out_time, presence: true
     validate :tech_availability
-    #Need to figure out how to pass arguments into this custom validation
-    # validate :tech_availability, :call_time, :out_time
-
-    # def tech_availability(call_time, out_time)
-    # errors.add(:tech_avail, "is unavailable") unless 
-    # shows = self.user.shows
-    # available = true
-    # shows.each do |show| 
-    #     byebug
-    #         if out_time >= show.start &&  call_time <= show.end
-    #         available =  false
-    #         elsif call_time > show.start && call_time < show.end
-    #         available =  false
-    #         elsif out_time > show.start && out_time < show.end
-    #         available = false               
-    #         end        
-    #     end
-    #     available         
-    # end
+    validate :out_after_call
+    validate :booked_within
 
     def tech_availability
         byebug
@@ -32,4 +15,21 @@ class TechnicianBooking < ApplicationRecord
         end
         errors.add(:technician, "is unavailable at that time") unless bool
     end
+
+    def out_after_call
+        if self.out_time < self.call_time
+          errors.add(:out_time, "must be after the call time") 
+        end 
+    end
+
+    def booked_within
+        booking = [self.call_time..self.out_time]
+        show = [self.show.start..self.show.end]
+        if !show.include?(booking)
+        errors.add(:call_time, "must be within the show dates") 
+        end
+    end
+
+
+
 end
