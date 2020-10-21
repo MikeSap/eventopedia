@@ -4,19 +4,21 @@
 <% end %>
 </div>
 
-
-<table>
-<tr>
-<th>Name</th>
-<th>Role</th>
-</tr>
-
+<table class="table table-striped table-bordered table-sm">
+  <thead class="thead-dark">
+    <tr>
+    <th>Name</th>
+    <th>Role</th>
+    </tr>
+  </thead>
+  <tbody>
   <% @users.each do |user| %>
       <tr>
-     <td> <%= link_to user.username, user_path(user) %></td> 
-     <td> <%=user.permission_class.title%> </td>
+        <td> <%= link_to user.username, user_path(user) %></td> 
+        <td> <%=user.permission_class.title%> </td>
      </tr>
   <% end %>
+  </tbody>
 </table>
 <%if @permission.create_users%>
 <%= link_to 'Add User', new_user_path %>

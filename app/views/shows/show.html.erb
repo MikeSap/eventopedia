@@ -7,65 +7,98 @@
     <% if !flash[:alert].nil? %> 
     <%= flash[:alert] %>
     <% end %>
-</div> 
+</div>
 
-<h3>Venue: <%= @show.venue %></h3>
-<h3>Client: <%= @show.client %></h3>
-<h3>Start: <%= @show.start %></h3>
-<h3>End: <%= @show.end %></h3>
-
-<% unless @show.equipment.empty? %>
-    <table>
-    <caption style='caption-side: top'>Equipment Required</caption>           
+<table table class="table table-striped table-bordered table-sm">
+    <thead class="thead-dark">
         <tr>
-            <th>Equipment Name</th>
-            <th>Quantity</th>
-            <%if @permission.book_equipment%>
-            <th></th>
-            <%end%>
+            <th>Event</th>
+            <th>Venue</th>
+            <th>Client</th>
+            <th>Start</th>
+            <th>End</th>
         </tr>
-        <% @show.equipment_bookings.each do |e|%>
+    </thead>
+    <tbody>
         <tr>
-            <td><%= link_to "#{e.equipment.name}", equipment_path(e.equipment) %></td>
-            <td>
-                <%= button_to '+', equipment_booking_path(e), params: {increment: 1} %>
-                <%= e.quantity %>
-                <%= button_to '-', equipment_booking_path(e), params: {increment: -1}%>
-            </td>
-            <%if @permission.book_equipment%>
-            <td><%= button_to 'Delete', equipment_booking_path(e), method: 'delete' %></td>
-            <%end%>
+            <td class='font-weight-bold'><%= @show.name %></td>
+            <td><%= @show.venue %></td>
+            <td><%= @show.client %></td>
+            <td><%= @show.start %></td>
+            <td><%= @show.end %></td>
         </tr>
-        <% end %>
-    </table>
-<% end %>
-<%if @permission.book_equipment%>
-<%= link_to 'Add equipment to Show', "/equipment_bookings/new/#{@show.id}" %>
-<%end%>
-
-<% unless @show.users.empty? %>
-    <table>
-    <caption style='caption-side: top'>Event Staff</caption>
-        <tr>
-            <th>Technician</th>
-            <th>Call Time</th>
-            <th>Out Time</th>
-            <%if @permission.book_technician%>
-            <th></th>
-            <%end%>
-        </tr>
-        <% @show.technician_bookings.each do |t|%>
-        <tr>
-            <td><%= link_to t.user.username, user_path(t.user) %></td>
-            <td><%= t.call_time %></td>
-            <td><%= t.out_time %></td>
-            <%if @permission.book_technician%>
-            <td><%= button_to 'Delete', technician_booking_path(t), method: 'delete' %></td>
-            <%end%>
-        </tr>
-        <% end %>
-    </table>
-<% end %>
-<%if @permission.book_technician%>
-<%= link_to 'Add staff to Show', "/technician_bookings/new/#{@show.id}" %>
-<%end%>
+    </tbody>
+</table>
+<div style="float: left; width: auto;">
+<%= button_to "Edit #{@show.name}", edit_show_path(@show), method: 'get' %>
+</div>
+<%= button_to "Delete #{@show.name}", show_path(@show), method: "delete", data: { confirm: "Are you sure you want to delete #{@show.name}?" }%>
+<div class="container-fluid float-left">
+    <div class="row">
+        <div class="col-lg-6">
+            
+                <table table class="table table-striped table-bordered table-sm">
+                <caption style='caption-side: top'>Equipment Required</caption>
+                    <thead class="thead-dark">
+                    <tr>
+                        <th>Equipment Name</th>
+                        <th>Quantity</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <% unless @show.equipment.empty? %>
+                    <tbody>
+                    <% @show.equipment_bookings.each do |e|%>
+                    <tr>
+                        <td><%= link_to "#{e.equipment.name}", equipment_path(e.equipment) %></td>
+                        <td>
+                            
+                            <div style="float: left; width: auto;">
+                            <%= button_to '-', equipment_booking_path(e), params: {increment: -1} %>
+                            </div>
+                            <div style="float: left; width: auto; margin: 3px;">
+                            <%= e.quantity %>
+                            </div>
+                            <div style="float: left; width: auto;">
+                            <%= button_to '+', equipment_booking_path(e), params: {increment: 1}%>
+                            </div>
+                        </td>
+                        <td><%= button_to 'Delete', equipment_booking_path(e), method: 'delete' %></td>
+                    </tr>
+                    <% end %>
+                    </tbody>
+                    <% end %>
+                </table>
+            
+            <%= link_to 'Add equipment to Show', "/equipment_bookings/new/#{@show.id}" %>
+        </div>
+        <div class="col-lg-6">
+            
+                <table class="table table-striped table-bordered table-sm">
+                <caption style='caption-side: top'>Event Staff</caption>
+                    <thead  class="thead-dark">
+                    <tr>
+                        <th>Technician</th>
+                        <th>Call Time</th>
+                        <th>Out Time</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <% unless @show.users.empty? %>
+                    <tbody>
+                    <% @show.technician_bookings.each do |t|%>
+                    <tr>
+                        <td><%= link_to t.user.username, user_path(t.user) %></td>
+                        <td><%= t.call_time %></td>
+                        <td><%= t.out_time %></td>
+                        <td><%= button_to 'Delete', technician_booking_path(t), method: 'delete' %></td>
+                    </tr>
+                    <% end %>
+                    </tbody>
+                    <% end %>
+                </table>
+            
+            <%= link_to 'Add staff to Show', "/technician_bookings/new/#{@show.id}" %>
+        </div>
+    </div>
+</div>

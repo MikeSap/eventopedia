@@ -1,4 +1,4 @@
-<h1>Welcome to Eventopedia, <%=@current_user.username%>.</h1>
+<h1>Welcome to Eventopedia<% if @current_user.id != nil %><%= ", #{@current_user.username}"%><% end %>.</h1>
 
 
 <% if @user.errors.any? %>
@@ -19,6 +19,9 @@
 <%=f.label :password%>
 <%=f.password_field :password%><br>
 
+<%=f.label :vendor%>
+<%=f.collection_select :vendor_id, Vendor.all, :id, :name%>
+
 <%=f.submit "Submit"%>
 <%end%><br>
- <%= link_to 'Register Your Vendor', 'vendors/new' %>
+ <%= link_to 'Register Your Vendor', new_vendor_path %>
