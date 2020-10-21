@@ -13,6 +13,7 @@
  *= require_tree .
  *= require_self
  */
+
 table, th, td {
   border: 1px solid black;
   border-collapse: collapse;
@@ -25,3 +26,6 @@ table, th, td {
     border: 1px solid red;
   }
 } */
+tr:nth-child(even) {
+  background-color: lightsteelblue;
+}
