@@ -19,6 +19,9 @@
 <%=f.label :password%>
 <%=f.password_field :password%><br>
 
+<%=f.label :vendor%>
+<%=f.collection_select :vendor_id, Vendor.all, :id, :name%>
+
 <%=f.submit "Submit"%>
 <%end%><br>
  <%= link_to 'Register Your Vendor', 'vendors/new' %>
