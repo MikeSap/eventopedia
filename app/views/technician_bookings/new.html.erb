@@ -1,0 +1,10 @@
+<%= form_for @technician_booking do |f| %>
+  <h3>Add Equipment to <%= @show.name %>:</h3>
+  <%= f.collection_select :user_id, @current_user.vendor.users, :id, :username %>
+  <%= f.label :call_time%>
+  <%= f.datetime_field :call_time%>
+  <%= f.label :out_time%>
+  <%= f.datetime_field :out_time%>
+  <%= f.hidden_field :show_id, value: @show.id %>
+  <%= f.submit %>
+<% end %>

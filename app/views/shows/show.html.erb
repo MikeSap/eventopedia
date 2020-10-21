@@ -1,8 +1,43 @@
 <h1><%= @show.name %></h1>
+<%= link_to 'Edit', edit_show_path(@show) %>
+<%= link_to 'Delete', show_path(@show), method: "delete", data: { confirm: "Are you sure you want to delete #{@show.name}?" }%>
 <h3>Venue: <%= @show.venue %></h3>
 <h3>Client: <%= @show.client %></h3>
 <h3>Start: <%= @show.start %></h3>
 <h3>End: <%= @show.end %></h3>
-<%= link_to 'Edit', edit_show_path(@show) %>
-<%= link_to 'Delete', show_path(@show), method: "delete", data: { confirm: "Are you sure you want to delete #{@show.name}?" }%>
 
+<h3>Equipment Required</h3>
+<% unless @show.equipment.empty? %>
+    <table>
+        <tr>
+            <th>Equipment Name</th>
+            <th>Quantity</th>
+        </tr>
+        <% @show.equipment_bookings.each do |e|%>
+        <tr>
+            <td><%= e.equipment.name %></td>
+            <td><%= e.quantity %></td>
+        </tr>
+        <% end %>
+    </table>
+<% end %>
+<%= link_to 'Add equipment to Show', "/equipment_bookings/new/#{@show.id}" %>
+
+<h3>Event Staff</h3>
+<% unless @show.users.empty? %>
+    <table>
+        <tr>
+            <th>Technician</th>
+            <th>Call Time</th>
+            <th>Out Time</th>
+        </tr>
+        <% @show.technician_bookings.each do |t|%>
+        <tr>
+            <td><%= t.user.username %></td>
+            <td><%= t.call_time %></td>
+            <td><%= t.out_time %></td>
+        </tr>
+        <% end %>
+    </table>
+<% end %>
+<%= link_to 'Add staff to Show', "/technician_bookings/new/#{@show.id}" %>
