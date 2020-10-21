@@ -1,4 +1,6 @@
 class TechnicianBookingsController < ApplicationController
+    before_action :can_book_tech
+    
     def new
         @technician_booking = TechnicianBooking.new
         @show = Show.find(params[:show_id])

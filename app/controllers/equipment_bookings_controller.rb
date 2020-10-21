@@ -1,4 +1,6 @@
 class EquipmentBookingsController < ApplicationController
+    before_action :can_book_equipment
+    
     def new
         @equipment_booking = EquipmentBooking.new
         @show = Show.find(params[:show_id])
