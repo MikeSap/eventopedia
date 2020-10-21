@@ -1,0 +1,19 @@
+<%= form_for @vendor do |f| %>
+  <h3>Vendor Info</h3>
+    <%=f.label :name%><br>
+    <%=f.text_field :name%><br>
+
+    <%=f.label :address%><br>
+    <%=f.text_field :address%><br>
+
+    <%=f.label :website %><br>
+    <%=f.url_field :url%><br>
+
+    <%=f.label :phone_number %><br>
+    <%=f.telephone_field :phone_number%><br>
+
+    <%=f.label :email %><br>
+    <%=f.email_field :contact_email %><br>
+    <br>
+    <%= f.submit %>
+<%end%>

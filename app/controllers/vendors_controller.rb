@@ -5,15 +5,18 @@ class VendorsController < ApplicationController
     end
 
     def show
-
+        @vendor = Vendor.find(params[:id])
+        @permission_classes = PermissionClass.all.where(vendor: @vendor)
     end
 
     def edit
-
+        @vendor = Vendor.find(params[:id])
     end
 
     def update
-
+        vendor = Vendor.find(params[:id])
+        return render :edit unless vendor.update(vendor_params)
+        redirect_to vendor_path(vendor)
     end
     
     def create

@@ -16,7 +16,8 @@ class PermissionClassesController < ApplicationController
     end
 
     def destroy
-
+        PermissionClass.find(params[:id]).destroy
+        redirect_to request.referrer
     end
 
 end
