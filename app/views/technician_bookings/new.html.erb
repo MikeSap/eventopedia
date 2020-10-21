@@ -1,5 +1,5 @@
 <% if @technician_booking.errors.any? %>
-        <ul>
+        <ul class="error">
           <% @technician_booking.errors.full_messages.each do |msg| %>
             <li><%= msg %></li>
           <% end %>

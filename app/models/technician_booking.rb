@@ -3,9 +3,7 @@ class TechnicianBooking < ApplicationRecord
     belongs_to :show
 
     validates :user, :show, :call_time, :out_time, presence: true
-    validate :tech_availability
-    validate :out_after_call
-    validate :booked_within
+    validate :tech_availability, :call_within, :out_within, :out_after_call
 
     def tech_availability
         bookings = self.user.technician_bookings.map {|booking| {call_time: booking.call_time, out_time: booking.out_time}}
@@ -21,11 +19,17 @@ class TechnicianBooking < ApplicationRecord
         end 
     end
 
-    def booked_within
-        booking = [self.call_time..self.out_time]
-        show = [self.show.start..self.show.end]
-        if !show.include?(booking)
+    def call_within
+        show = (self.show.start..self.show.end)
+        if !show.include?(self.call_time)
         errors.add(:call_time, "must be within the show dates") 
+        end
+    end
+
+    def out_within
+        show = (self.show.start..self.show.end)
+        if !show.include?(self.out_time)
+        errors.add(:out_time, "must be within the show dates") 
         end
     end
 
