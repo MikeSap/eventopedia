@@ -11,10 +11,10 @@ si = Vendor.create(name:"Sound Investment", address: "123 Main St.", url:"www.so
 tech = PermissionClass.create(title: "tech", vendor:si, create_users: false, create_equipment:false, create_show:false, book_technician:false, book_equipment:true, bookable:true )
 ware = PermissionClass.create(title: "warehouse", vendor:si, create_users: false, create_equipment:true, create_show:false, book_technician:false, book_equipment:true, bookable:false )
 
-peter = User.create(username:"peter", password: "123", password_confirmation: "123", permission_class_id: 1, vendor: si)
-mike = User.create(username:"mike", password: "123", password_confirmation: "123", permission_class:tech, vendor:si)
-tom = User.create(username:"tom", password: "123", password_confirmation: "123", permission_class:tech, vendor:si)
-marc = User.create(username:"marc", password: "123", password_confirmation: "123", permission_class: ware, vendor:si)
+peter = User.create(username:"peter", first_name: 'Peter', last_name: 'Vanek', password: "123", password_confirmation: "123", permission_class_id: 1, vendor: si)
+mike = User.create(username:"mike", first_name: 'Mike', last_name: 'Sapienza', password: "123", password_confirmation: "123", permission_class:tech, vendor:si)
+tom = User.create(username:"tom", first_name: 'Tom', last_name: 'Bigelow', password: "123", password_confirmation: "123", permission_class:tech, vendor:si)
+marc = User.create(username:"marc", first_name: 'Marc', last_name: 'Ecco', password: "123", password_confirmation: "123", permission_class: ware, vendor:si)
 
 k2 = Equipment.create(name: "K2", manufacturer:"L-Acoustics", quantity: "24", category: "Audio", sub_category: "Speakers", vendor: si)
 ks28 = Equipment.create(name: "KS28", manufacturer:"L-Acoustics", quantity: "16", category: "Audio", sub_category: "Speakers", vendor: si)
