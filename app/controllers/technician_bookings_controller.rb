@@ -6,9 +6,7 @@ class TechnicianBookingsController < ApplicationController
 
     def create
         @show = Show.find(tb_params[:show_id])
-        @technician_booking = TechnicianBooking.find_or_create_by(show_id: tb_params[:show_id], user_id: tb_params[:user_id])
-        @technician_booking.call_time = tb_params[:call_time]
-        @technician_booking.out_time = tb_params[:out_time]
+        @technician_booking = TechnicianBooking.new(tb_params)
         return render :new unless @technician_booking.save
         redirect_to show_path(tb_params[:show_id])
     end

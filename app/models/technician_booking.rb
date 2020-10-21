@@ -3,6 +3,7 @@ class TechnicianBooking < ApplicationRecord
     belongs_to :show
 
     validates :user, :show, :call_time, :out_time, presence: true
+    validate :tech_availability
     #Need to figure out how to pass arguments into this custom validation
     # validate :tech_availability, :call_time, :out_time
 
@@ -22,4 +23,13 @@ class TechnicianBooking < ApplicationRecord
     #     end
     #     available         
     # end
+
+    def tech_availability
+        byebug
+        bookings = self.user.technician_bookings.map {|booking| {call_time: booking.call_time, out_time: booking.out_time}}
+        bool = bookings.all? do |schedule|
+            ((schedule[:call_time].to_date..schedule[:out_time].to_date).to_a & (self.call_time.to_date..self.out_time.to_date).to_a).empty?
+        end
+        errors.add(:technician, "is unavailable at that time") unless bool
+    end
 end
