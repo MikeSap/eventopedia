@@ -1,0 +1,33 @@
+<% if @user.errors.any? %>
+        <ul>
+          <% @user.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+    <% end %>
+
+
+<%= form_for @user do |f| %>
+
+<h3>Edit <%=@user.username.titleize%> user info</h3>
+
+  <%=f.label :username %><br>
+  <%=f.text_field :username%><br>
+    
+    <% if @current_user.id == @user.id%>
+        <%=f.label :password %><br>
+        <%=f.password_field :password%><br>
+    
+
+        <%=f.label :password_confirmation %><br>
+        <%=f.password_field :password_confirmation%><br>
+    <%end%>
+
+    <% if @current_user.permission_class.create_users%>
+        <%=f.label :Permissions %><br>
+        <%=f.collection_select :permission_class_id, @permissions, :id, :title%><br>
+    <%end%>
+
+<%=f.submit "Submit"%>
+
+<%end%>

@@ -21,11 +21,14 @@ class UsersController < ApplicationController
     end
 
     def edit
-
+        @user = User.find(params[:id])
+        @permissions = @user.vendor.permission_classes  
     end
 
     def update
-
+        @user = User.find(params[:id])
+        return  render :edit unless @user.update(user_params)
+        redirect_to user_path(@user)
     end
 
     def destroy
