@@ -1,11 +1,14 @@
-<table>
-    <tr>
-    <th>Name</th>
-    <th>Venue</th>
-    <th>Client</th>
-    <th>Start</th>
-    <th>End</th>
-    </tr>
+<table class="table table-striped table-bordered table-sm">
+    <thead class="thead-dark">
+        <tr>
+            <th>Name</th>
+            <th>Venue</th>
+            <th>Client</th>
+            <th>Start</th>
+            <th>End</th>
+        </tr>
+    </thead>
+    <tbody>
 <% @shows.each do |s|%>
     <tr>
     <td><%= link_to s.name, show_path(s) %></td>
@@ -15,5 +18,6 @@
     <td> <%= s.end %> </td>
     </tr>
 <% end %>
+    </tbody>
 </table>
 <%= link_to 'Add Show', new_show_path %>

@@ -1,15 +1,16 @@
 <% if @user.permission_class.bookable %>
   <h2><%=@user.username.titleize%>, <%= @user.permission_class.title.titleize %> Schedule </h2>
 
-  <table>
-
-    <tr>
-      <th>Show</th>
-      <th>Venue</th>
-      <th>Call Time</th>
-      <th>Out Time</th>
-    </tr>
-
+  <table class="table table-striped table-bordered table-sm">
+    <thead class="thead-dark">
+      <tr>
+        <th>Show</th>
+        <th>Venue</th>
+        <th>Call Time</th>
+        <th>Out Time</th>
+      </tr>
+    </thead>
+    <tbody>
     <% @gigs.each do |gig| %>
       <tr>
         <td> <%= gig.show.name.titleize %></td> 
@@ -18,7 +19,7 @@
         <td> <%=gig.out_time%> </td>
       </tr> 
     <% end %>
-      
+    </tbody>
   </table>
 
 <% if @current_user.permission_class.create_users || @current_user.id == @user.id %>
