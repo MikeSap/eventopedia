@@ -32,13 +32,15 @@ class ApplicationController < ActionController::Base
     def can_book_tech
       if !current_user.permission_class.book_technician
       flash.alert = "You dont have permission to book techs on a show"
-      render
+      redirect_to request.referrer
       end
     end
 
     def can_book_equipment
-      current_user.permission_class.book_equipment
+      if !current_user.permission_class.book_equipment
       flash.alert = "You dont have permission to book equipment"
+      redirect_to request.referrer
+      end
     end
 
     def bookable
