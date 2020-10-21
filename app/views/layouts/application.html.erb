@@ -23,19 +23,27 @@
           <li class="nav-item active">
             <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/shows">Shows</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/equipment">Equipment</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/users">Staff</a>
-          </li>
+          <% if @current_user.id != nil %>
+            <li class="nav-item">
+              <a class="nav-link" href="/shows">Shows</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/equipment">Equipment</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/users">Staff</a>
+            </li>
+            <% if @current_user.permission_class.title == 'admin'%>
+              <li class="nav-item">
+                <a class="nav-link" href="/users">Manage <%= @current_user.vendor.name %></a>
+              </li>
+            <% end %>
+          
         </ul>
-        <form class="form-inline my-2 my-lg-0">
+        <ul class="my-2 my-lg-0">
           <a class="nav-link" href="/logout">logout</a>
-        </form>
+        </ul>
+        <% end %>
       </div>
     </nav>
    
