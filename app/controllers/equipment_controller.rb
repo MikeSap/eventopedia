@@ -42,9 +42,10 @@ class EquipmentController < ApplicationController
     end
 
     def can_create_equipment
-        current_user.permission_class.create_equipment
+        if !current_user.permission_class.create_equipment
         flash[:alert] = "You dont have permission to access and edit inventory"
         return redirect_to request.referrer unless request.referrer == nil
         redirect_to '/'
+        end
     end
 end

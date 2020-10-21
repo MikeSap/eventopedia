@@ -22,27 +22,19 @@
     </tbody>
   </table>
 
-<% if @permission.create_users || @current_user.id == @user.id %>
+<%elsif @permission.title == "admin"%>
+    <h1><%=@user.username%> has admin priveleges.</h1>        
+<%else%>
+    <h1> <%=@user.username%> </h1> 
+<%end%>
+
+<% if @current_user.id == @user.id %>
 <%= link_to 'Edit User', edit_user_path(@user)%>
+<%end%>
+<% if @current_user.permission_class.create_users %>
 <%= link_to 'Delete User', user_path(@user), method: "delete", data: { confirm: "Are you sure?" }%>
 <%end%>
 
-<%elsif @permission.title == "admin"%>
-    <h1><%=@user.username%> has admin priveleges.</h1>
-
-        <% if @permission.create_users%>
-          <%= link_to 'Edit User', edit_user_path(@user)%>
-        <%end%>
-        
-<%else%>
-    <h1> <%=@user.username%> </h1>
-    
-        <% if @permission.create_users%>
-         <%= link_to 'Edit User', edit_user_path(@user)%>
-         <%= link_to 'Delete User', user_path(@user), method: "delete", data: { confirm: "Are you sure you want to delete #{@user.username}?" }%>
-        <%end%>
-
-<%end%>
 
 
 
