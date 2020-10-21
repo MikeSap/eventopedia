@@ -12,6 +12,14 @@ class TechnicianBookingsController < ApplicationController
         redirect_to show_path(eb_params[:show_id])
     end
 
+    def destroy
+        technician_booking = TechnicianBooking.find(params[:id])
+        show = technician_booking.show
+        technician_booking.destroy
+        redirect_to show_path(show)
+    end
+
+
     private
 
     def eb_params

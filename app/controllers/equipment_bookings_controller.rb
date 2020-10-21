@@ -11,6 +11,13 @@ class EquipmentBookingsController < ApplicationController
         redirect_to show_path(eb_params[:show_id])
     end
 
+    def destroy
+        @equipment_booking = EquipmentBooking.find(params[:id])
+        show = @equipment_booking.show
+        @equipment_booking.destroy
+        redirect_to show_path(show)
+    end
+
     private
 
     def eb_params

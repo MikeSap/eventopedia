@@ -12,11 +12,13 @@
         <tr>
             <th>Equipment Name</th>
             <th>Quantity</th>
+            <th></th>
         </tr>
         <% @show.equipment_bookings.each do |e|%>
         <tr>
-            <td><%= e.equipment.name %></td>
+            <td><%= link_to "#{e.equipment.name}", equipment_path(e.equipment) %></td>
             <td><%= e.quantity %></td>
+            <td><%= button_to 'Delete', equipment_booking_path(e), method: 'delete' %></td>
         </tr>
         <% end %>
     </table>
@@ -30,12 +32,14 @@
             <th>Technician</th>
             <th>Call Time</th>
             <th>Out Time</th>
+            <th></th>
         </tr>
         <% @show.technician_bookings.each do |t|%>
         <tr>
             <td><%= t.user.username %></td>
             <td><%= t.call_time %></td>
             <td><%= t.out_time %></td>
+            <td><%= button_to 'Delete', technician_booking_path(t), method: 'delete' %></td>
         </tr>
         <% end %>
     </table>
