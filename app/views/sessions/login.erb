@@ -1,27 +1,32 @@
-<h1>Welcome to Eventopedia<% if @current_user.id != nil %><%= ", #{@current_user.username}"%><% end %>.</h1>
+<div class="d-flex justify-content-center">
+  <h1>Welcome to Eventopedia<% if @current_user.id != nil %><%= ", #{@current_user.username}"%><% end %>.</h1>
 
+  <% if @user.errors.any? %>
+    <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  <% end %>
+</div>
 
-<% if @user.errors.any? %>
-        <ul>
-          <% @user.errors.full_messages.each do |msg| %>
-            <li><%= msg %></li>
-          <% end %>
-        </ul>
-    <% end %>
+<div class="d-flex justify-content-center text-center">
+  <%= form_for :user do |f| %>
 
+  <%=f.label :username%><br>
+  <%=f.text_field :username %><br>
 
+  <%=f.label :password%><br>
+  <%=f.password_field :password%><br>
 
-<%= form_for :user do |f| %>
-
-<%=f.label :username%>
-<%=f.text_field :username %><br>
-
-<%=f.label :password%>
-<%=f.password_field :password%><br>
-
-<%=f.label :vendor%>
-<%=f.collection_select :vendor_id, Vendor.all, :id, :name%>
-
-<%=f.submit "Submit"%>
-<%end%><br>
- <%= link_to 'Register Your Vendor', new_vendor_path %>
+  <%=f.label :vendor%><br>
+  <%=f.collection_select :vendor_id, Vendor.all, :id, :name%>
+  <br>
+  <br>
+  <%=f.submit "Log In"%>
+  <%end%>
+</div>
+<br>
+<div class="d-flex justify-content-center">
+  <%= link_to 'Register a new Vendor', new_vendor_path %>
+</div>
