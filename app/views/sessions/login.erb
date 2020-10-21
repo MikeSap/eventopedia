@@ -1,6 +1,5 @@
 <h1>Welcome to Eventopedia<% if @current_user.id != nil %><%= ", #{@current_user.username}"%><% end %>.</h1>
 
-
 <% if @user.errors.any? %>
         <ul>
           <% @user.errors.full_messages.each do |msg| %>

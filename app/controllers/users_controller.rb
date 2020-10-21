@@ -30,6 +30,7 @@ class UsersController < ApplicationController
 
     def update
         @user = User.find(params[:id])
+        @permissions = @user.vendor.permission_classes
         return  render :edit unless @user.update(user_params)
         redirect_to user_path(@user)
     end
