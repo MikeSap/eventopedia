@@ -6,9 +6,9 @@
 <h3>Start: <%= @show.start %></h3>
 <h3>End: <%= @show.end %></h3>
 
-<h3>Equipment Required</h3>
 <% unless @show.equipment.empty? %>
     <table>
+    <caption style='caption-side: top'>Equipment Required</caption>
         <tr>
             <th>Equipment Name</th>
             <th>Quantity</th>
@@ -29,9 +29,10 @@
 <% end %>
 <%= link_to 'Add equipment to Show', "/equipment_bookings/new/#{@show.id}" %>
 
-<h3>Event Staff</h3>
+
 <% unless @show.users.empty? %>
     <table>
+    <caption style='caption-side: top'>Event Staff</caption>
         <tr>
             <th>Technician</th>
             <th>Call Time</th>
