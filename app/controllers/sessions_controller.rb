@@ -10,7 +10,14 @@ class SessionsController < ApplicationController
 
     def create
       @user = User.find_by(username: params[:user][:username], vendor_id: params[:user][:vendor_id])
-      return redirect_to '/login' unless @user.try(:authenticate, params[:user][:password])   
+      if @user ==  nil
+         flash[:alert] = ("You have entered an incorrect Username")
+         return redirect_to '/login'   
+      end      
+      unless @user.try(:authenticate, params[:user][:password])
+        flash[:alert] = "Password invalid"
+        return redirect_to '/login'   
+      end
       session[:user_id] = @user.id
       redirect_to '/'
     end
