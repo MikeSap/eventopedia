@@ -18,9 +18,9 @@
         <tr>
             <td><%= link_to "#{e.equipment.name}", equipment_path(e.equipment) %></td>
             <td>
-                <%= button_to '-', equipment_booking_path(e), params: {increment: -1} %>
+                <%= button_to '+', equipment_booking_path(e), params: {increment: 1} %>
                 <%= e.quantity %>
-                <%= button_to '+', equipment_booking_path(e), params: {increment: 1}%>
+                <%= button_to '-', equipment_booking_path(e), params: {increment: -1}%>
             </td>
             <td><%= button_to 'Delete', equipment_booking_path(e), method: 'delete' %></td>
         </tr>
@@ -40,7 +40,7 @@
         </tr>
         <% @show.technician_bookings.each do |t|%>
         <tr>
-            <td><%= t.user.username %></td>
+            <td><%= link_to t.user.username, user_path(t.user) %></td>
             <td><%= t.call_time %></td>
             <td><%= t.out_time %></td>
             <td><%= button_to 'Delete', technician_booking_path(t), method: 'delete' %></td>
