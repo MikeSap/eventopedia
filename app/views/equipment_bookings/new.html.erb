@@ -1,3 +1,12 @@
+<% if @equipment_booking.errors.any? %>
+        <ul>
+          <% @equipment_booking.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+    <% end %>
+
+
 <%= form_for @equipment_booking do |f| %>
   <h3>Add Equipment to <%= @show.name %>:</h3>
   <%= f.collection_select :equipment_id, @current_user.vendor.equipment, :id, :name %>

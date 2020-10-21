@@ -20,7 +20,7 @@
   <%=f.label :password_confirmation %><br>
   <%=f.password_field :password_confirmation%><br>
 
-  <%=f.label :Permissions %><br>
+  <%=f.label :title %><br>
   <%=f.collection_select :permission_class_id, @permissions, :id, :title%><br>
 
 <%=f.submit "Submit"%>

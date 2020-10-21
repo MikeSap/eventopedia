@@ -10,6 +10,7 @@ class UsersController < ApplicationController
     end
 
     def create
+        @permissions = @current_user.vendor.permission_classes
         @user = User.new(user_params.merge(vendor: @current_user.vendor))
         return  render :new unless @user.save
         redirect_to users_path

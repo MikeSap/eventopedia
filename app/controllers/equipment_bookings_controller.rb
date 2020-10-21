@@ -5,6 +5,7 @@ class EquipmentBookingsController < ApplicationController
     end
 
     def create
+        @show = Show.find(eb_params[:show_id])
         @equipment_booking = EquipmentBooking.find_or_create_by(show_id: eb_params[:show_id], equipment_id: eb_params[:equipment_id])
         @equipment_booking.quantity = eb_params[:quantity]
         return render :new unless @equipment_booking.save

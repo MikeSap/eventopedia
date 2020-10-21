@@ -5,11 +5,12 @@ class TechnicianBookingsController < ApplicationController
     end
 
     def create
-        @technician_booking = TechnicianBooking.find_or_create_by(show_id: eb_params[:show_id], user_id: eb_params[:user_id])
-        @technician_booking.call_time = eb_params[:call_time]
-        @technician_booking.out_time = eb_params[:out_time]
+        @show = Show.find(tb_params[:show_id])
+        @technician_booking = TechnicianBooking.find_or_create_by(show_id: tb_params[:show_id], user_id: tb_params[:user_id])
+        @technician_booking.call_time = tb_params[:call_time]
+        @technician_booking.out_time = tb_params[:out_time]
         return render :new unless @technician_booking.save
-        redirect_to show_path(eb_params[:show_id])
+        redirect_to show_path(tb_params[:show_id])
     end
 
     def destroy
@@ -22,7 +23,7 @@ class TechnicianBookingsController < ApplicationController
 
     private
 
-    def eb_params
+    def tb_params
         params.require(:technician_booking).permit(:user_id, :show_id, :call_time, :out_time)
     end
 end

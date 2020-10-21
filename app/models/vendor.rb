@@ -4,6 +4,9 @@ class Vendor < ApplicationRecord
     has_many :permission_classes
     has_many :equipment
 
+    validates :name, :address, :url, :contact_email, :phone_number, presence: true
+
+
     after_save :create_owner_permission
 
     def create_owner_permission
