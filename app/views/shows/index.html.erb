@@ -23,6 +23,6 @@
     </tr>
 <% end %>
 </table>
-<%if @current_user.permission_class.create_show%>
+<%if @permission.create_show%>
 <%= link_to 'Add Show', new_show_path %>
 <%end%>

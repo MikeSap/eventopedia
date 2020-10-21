@@ -23,7 +23,7 @@
         <%=f.password_field :password_confirmation%><br>
     <%end%>
 
-    <% if @current_user.permission_class.create_users%>
+    <% if @permission.create_users%>
         <%=f.label :Permissions %><br>
         <%=f.collection_select :permission_class_id, @permissions, :id, :title%><br>
     <%end%>

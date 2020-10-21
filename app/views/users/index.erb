@@ -18,6 +18,6 @@
      </tr>
   <% end %>
 </table>
-<%if @current_user.permission_class.create_users%>
+<%if @permission.create_users%>
 <%= link_to 'Add User', new_user_path %>
 <%end%>

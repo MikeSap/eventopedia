@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-    before_action :current_user
+    before_action :current_user, :permission
     before_action :require_login
 
 
@@ -15,9 +15,8 @@ class ApplicationController < ActionController::Base
       return redirect_to login_path unless logged_in
     end
 
-    def bookable
-      current_user.permission_class.bookable
+    def permission
+     @permission = @current_user.permission_class
     end
-
 
 end

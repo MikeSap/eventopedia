@@ -1,6 +1,5 @@
 class EquipmentController < ApplicationController
     before_action :can_create_equipment, only: [:new, :create, :edit, :update, :destroy]
-    helper_method :can_create_equipment
 
     def index
         @equipment = @current_user.vendor.equipment
