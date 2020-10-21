@@ -54,13 +54,13 @@
                         <td>
                             
                             <div style="float: left; width: auto;">
-                            <%= button_to '-', equipment_booking_path(e), params: {increment: -1} %>
+                            <%= button_to '-', equipment_booking_path(e), params: {increment: -1}, disabled: e.quantity_min? %>
                             </div>
                             <div style="float: left; width: auto; margin: 3px;">
                             <%= e.quantity %>
                             </div>
                             <div style="float: left; width: auto;">
-                            <%= button_to '+', equipment_booking_path(e), params: {increment: 1}%>
+                            <%= button_to '+', equipment_booking_path(e), params: {increment: 1}, disabled: e.quantity_max?%>
                             </div>
                         </td>
                         <%if @permission.book_equipment%>
