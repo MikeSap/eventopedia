@@ -10,4 +10,11 @@ class EquipmentBooking < ApplicationRecord
         self.quantity <= self.show.vendor.equipment.find(self.equipment_id).quantity
     end
 
+    def quantity_min?
+        self.quantity <= 1
+    end
+
+    def quantity_max?
+        self.quantity >= self.show.vendor.equipment.find(self.equipment_id).quantity
+    end
 end
