@@ -51,7 +51,7 @@ end
 Show.all.each do |show|
     (rand(3) + 3).times do
         user = User.all.select {|user| user.permission_class.bookable }.sample
-        equipment = Equipment.find(rand(50) + 1)
+        equipment = Equipment.find(rand(Equipment.all.length) + 1)
         TechnicianBooking.create(user: user, show: show, call_time:show.start, out_time:show.end)
         EquipmentBooking.create(equipment: equipment, show: show, quantity: rand(equipment.quantity))
     end
