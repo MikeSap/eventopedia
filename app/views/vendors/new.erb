@@ -1,5 +1,5 @@
 <% if @current_user.errors.any? %>
-  <ul>
+  <ul class= "justify-content-center alert-info text-danger">
     <% @current_user.errors.full_messages.each do |msg| %>
       <li><%= msg %></li>
     <% end %>
@@ -7,7 +7,7 @@
 <% end %>
 
 <% if @vendor.errors.any? %>
-  <ul>
+  <ul class= "justify-content-center alert-info text-danger">
     <% @vendor.errors.full_messages.each do |msg| %>
       <li><%= msg %></li>
     <% end %>

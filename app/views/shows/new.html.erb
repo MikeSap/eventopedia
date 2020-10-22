@@ -1,5 +1,5 @@
 <% if @show.errors.any? %>
-        <ul>
+        <ul class= "alert alert-danger">
           <% @show.errors.full_messages.each do |msg| %>
             <li><%= msg %></li>
           <% end %>
@@ -18,10 +18,17 @@
     <%=f.text_field :client %><br>
 
     <%=f.label :start %><br>
+<<<<<<< HEAD
     <%=f.datetime_field :start, min: Date.today %><br>
 
     <%=f.label :end %><br>
     <%=f.datetime_field :end, min: Date.today%><br>
+=======
+    <%= f.datetime_field :start, min: Date.today%><br>
+
+    <%=f.label :end %><br>
+    <%= f.datetime_field :end, min: Date.today%><br>
+>>>>>>> github/mps_valid
 
     <%=f.submit "Submit"%>
 <% end %>

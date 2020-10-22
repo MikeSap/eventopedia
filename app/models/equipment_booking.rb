@@ -4,6 +4,7 @@ class EquipmentBooking < ApplicationRecord
 
     validates :equipment, :show, :quantity, presence: true
     validate :quantity_available
+    validates :quantity, numericality: { greater_than: 0, message: "cannot be zero"}
 
     def quantity_available
         errors.add(:quantity_available, "is lower than requested amount") unless 

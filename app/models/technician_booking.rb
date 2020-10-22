@@ -5,7 +5,7 @@ class TechnicianBooking < ApplicationRecord
     validates :user, :show, :call_time, :out_time, presence: true
     validate :tech_availability, :call_within, :out_within, :out_after_call
 
-    def tech_availability
+    def tech_availability        
         bookings = self.user.technician_bookings.map {|booking| {call_time: booking.call_time, out_time: booking.out_time}}
         bool = bookings.all? do |schedule|
             ((schedule[:call_time].to_date..schedule[:out_time].to_date).to_a & (self.call_time.to_date..self.out_time.to_date).to_a).empty?
