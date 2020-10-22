@@ -1,0 +1,38 @@
+<% if @permission_class.errors.any? %>
+  <ul>
+    <% @permission_class.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= form_for @permission_class do |f| %>
+    <%= f.label :title %><br>
+    <%= f.text_field :title %><br>
+
+    <%= f.hidden_field :vendor_id, value: @current_user.vendor.id %>
+    
+    <h3>Permissions:</h3>
+    
+    <%= f.check_box :create_users %>
+    <%= f.label :create_users %><br>
+    
+    <%= f.check_box :create_equipment %>
+    <%= f.label :create_equipment %><br>
+
+    <%= f.check_box :create_show %>
+    <%= f.label :create_show %><br>
+
+    <%= f.check_box :book_technician %>
+    <%= f.label :book_technician %><br>
+
+    <%= f.check_box :book_equipment %>
+    <%= f.label :book_equipment %><br>
+
+    <%= f.check_box :bookable %>
+    <%= f.label :bookable %><br>
+    <br>
+
+    <%= f.submit%>
+
+<% end %>
