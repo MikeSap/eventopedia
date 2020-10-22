@@ -44,14 +44,16 @@ lolla = Show.create(name: "Lollapalooza", venue:"grant park", client: "C3", star
 end
 
 50.times do
-    Equipment.create(name: "#{Faker::Music.genre} #{Faker::Music.instrument}", manufacturer: Faker::Device.manufacturer, quantity: "#{rand(50) + 1}", category: Faker::IndustrySegments.industry, sub_category: Faker::IndustrySegments.sub_sector, vendor:flatiron)
+    categories = ['Audio', 'Video', 'Lighting']
+    Equipment.create(name: "#{Faker::Music.genre} #{Faker::Music.instrument}", manufacturer: Faker::Device.manufacturer, quantity: "#{rand(50) + 1}", category: categories[rand(3)], sub_category: Faker::IndustrySegments.sub_sector, vendor:flatiron)
 end
 
 Show.all.each do |show|
     (rand(3) + 3).times do
         user = User.all.select {|user| user.permission_class.bookable }.sample
+        equipment = Equipment.find(rand(50) + 1)
         TechnicianBooking.create(user: user, show: show, call_time:show.start, out_time:show.end)
-        EquipmentBooking.create(equipment_id: (rand(50) + 1), show: show)
+        EquipmentBooking.create(equipment: equipment, show: show, quantity: rand(equipment.quantity))
     end
 end
 
