@@ -18,10 +18,10 @@
     <%=f.text_field :client %><br>
 
     <%=f.label :start %><br>
-    <%=f.datetime_field :start %><br>
+    <%=f.datetime_field :start, min: Date.today %><br>
 
     <%=f.label :end %><br>
-    <%=f.datetime_field :end %><br>
+    <%=f.datetime_field :end, min: Date.today%><br>
 
     <%=f.submit "Submit"%>
 <% end %>
