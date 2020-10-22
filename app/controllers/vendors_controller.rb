@@ -6,11 +6,13 @@ class VendorsController < ApplicationController
 
     def show
         @vendor = Vendor.find(params[:id])
+        return redirect_to '/' unless (@vendor == current_user.vendor && current_user.permission_class.admin)
         @permission_classes = PermissionClass.all.where(vendor: @vendor)
     end
 
     def edit
         @vendor = Vendor.find(params[:id])
+        return redirect_to '/' unless (@vendor == current_user.vendor && current_user.permission_class.admin)
     end
 
     def update

@@ -7,6 +7,7 @@ class ShowsController < ApplicationController
 
     def show
         @show = Show.find(params[:id])
+        return redirect_to shows_path unless @show.vendor == current_user.vendor
     end
 
     def new
@@ -21,6 +22,7 @@ class ShowsController < ApplicationController
 
     def edit
         @show = Show.find(params[:id])
+        return redirect_to shows_path unless @show.vendor == current_user.vendor
     end
 
     def update

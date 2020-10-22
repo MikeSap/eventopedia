@@ -19,12 +19,14 @@ class UsersController < ApplicationController
     end
 
     def show        
-        @user = User.find(params[:id])  
+        @user = User.find(params[:id])
+        return redirect_to users_path unless @user.vendor == current_user.vendor  
         @gigs = @user.technician_bookings.order(:call_time)        
     end
 
     def edit
         @user = User.find(params[:id])
+        return redirect_to users_path unless @user.vendor == current_user.vendor
         @permissions = @user.vendor.permission_classes  
     end
 

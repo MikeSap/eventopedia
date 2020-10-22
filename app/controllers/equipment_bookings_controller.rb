@@ -4,6 +4,7 @@ class EquipmentBookingsController < ApplicationController
     def new
         @equipment_booking = EquipmentBooking.new
         @show = Show.find(params[:show_id])
+        return redirect_to shows_path unless @show.vendor == current_user.vendor
     end
 
     def create

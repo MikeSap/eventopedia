@@ -4,6 +4,7 @@ class TechnicianBookingsController < ApplicationController
     def new        
         @bookable_technicians = current_user.vendor.users.select{ |user| user.bookable? }.sort_by{|user| user.permission_class.title}
         @show = Show.find(params[:show_id])
+        return redirect_to shows_path unless @show.vendor == current_user.vendor
         @technician_booking = TechnicianBooking.new(call_time: @show.start, out_time: @show.end)
     end
 

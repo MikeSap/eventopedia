@@ -8,6 +8,7 @@ class EquipmentController < ApplicationController
 
     def show
         @equipment = Equipment.find(params[:id])
+        return redirect_to equipment_index_path unless @equipment.vendor == current_user.vendor
     end
 
     def new        
@@ -22,6 +23,7 @@ class EquipmentController < ApplicationController
 
     def edit
         @equipment = Equipment.find(params[:id])
+        return redirect_to equipment_index_path unless @equipment.vendor == current_user.vendor
     end
 
     def update
