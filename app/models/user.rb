@@ -21,4 +21,12 @@ class User < ApplicationRecord
     def bookable?
         self.permission_class.bookable
     end
+
+    def call_time_display
+        self.call_time.localtime.strftime("%b %-d %Y %l:%M %p")
+    end
+
+    def out_time_display
+        self.out_time.localtime.strftime("%b %-d %Y %l:%M %p")
+    end
 end

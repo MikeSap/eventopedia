@@ -18,8 +18,8 @@
       <tr>
         <td> <%= link_to gig.show.name, show_path(gig.show) %></td> 
         <td> <%= gig.show.venue %></td> 
-        <td> <%= gig.call_time %></td> 
-        <td> <%=gig.out_time%> </td>
+        <td> <%= gig.call_time_display %></td> 
+        <td> <%=gig.out_time_display%> </td>
       </tr> 
     <% end %>
     </tbody>
