@@ -9,6 +9,8 @@
 require 'faker'
 
 flatiron = Vendor.create(name:"Flatiron AV", address: "515 N State St, Chicago, IL 60654", url:"https://flatironschool.com/", phone_number:"312-500-4049", contact_email: "info@flatironschool.com")
+PermissionClass.find(1).update(title: "Co-Founder")
+
 
 v1 = PermissionClass.create(title: "V1", vendor:flatiron, create_users: false, create_equipment:false, create_show:false, book_technician:false, book_equipment:true, bookable:true )
 v2 = PermissionClass.create(title: "V2", vendor:flatiron, create_users: false, create_equipment:false, create_show:false, book_technician:false, book_equipment:true, bookable:true )
@@ -34,8 +36,6 @@ mike = User.create(username:"msapienza", first_name: 'Mike', last_name: 'Sapienz
     User.create(username:username, first_name: first_name, last_name: last_name, password: "123", password_confirmation: "123", permission_class: role, vendor:flatiron)
 end
 
-
-lolla = Show.create(name: "Lollapalooza", venue:"grant park", client: "C3", start: "2020-08-20", end: "2020-08-24 23:59:59", vendor_id: 1)
 50.times do
     first_day = Faker::Time.between_dates(from: Date.today, to: (Date.today + 60), period: :morning)
     last_day = Faker::Time.between_dates(from: first_day, to: (first_day + 3), period: :night)
@@ -43,10 +43,31 @@ lolla = Show.create(name: "Lollapalooza", venue:"grant park", client: "C3", star
     Show.create(name: show_options[rand(5)], venue: Faker::WorldCup.stadium, client: Faker::Company.unique.name, start: first_day, end: last_day, vendor_id: 1)
 end
 
-50.times do
-    categories = ['Audio', 'Video', 'Lighting']
-    Equipment.create(name: "#{Faker::Music.genre} #{Faker::Music.instrument}", manufacturer: Faker::Device.manufacturer, quantity: "#{rand(50) + 1}", category: categories[rand(3)], sub_category: Faker::IndustrySegments.sub_sector, vendor:flatiron)
+# 50.times do
+#     categories = ['Audio', 'Video', 'Lighting']
+#     Equipment.create(name: "#{Faker::Music.genre} #{Faker::Music.instrument}", manufacturer: Faker::Device.manufacturer, quantity: "#{rand(50) + 1}", category: categories[rand(3)], sub_category: Faker::IndustrySegments.sub_sector, vendor:flatiron)
+# end
+
+cable_lengths = ["10'", "25'", "50'", "100'"]
+
+Equipment.create(name: "Boxer 4k30", manufacturer: "Christie", quantity: "3", category: "Video", sub_category: "Projectors", vendor:flatiron)
+Equipment.create(name: "RLS-W12", manufacturer: "Barco", quantity: "8", category: "Video", sub_category: "Projectors", vendor:flatiron)
+Equipment.create(name: "LX700", manufacturer: "Christie", quantity: "16", category: "Video", sub_category: "Projectors", vendor:flatiron)
+Equipment.create(name: "HDC 5500", manufacturer: "Sony", quantity: "4", category: "Video", sub_category: "Cameras", vendor:flatiron)
+Equipment.create(name: "Studio Camera 4k", manufacturer: "Blackmagic", quantity: "8", category: "Video", sub_category: "Cameras", vendor:flatiron)
+Equipment.create(name: '50" Flatscreen', manufacturer: "Samsung", quantity: "8", category: "Video", sub_category: "Monitors", vendor:flatiron)
+Equipment.create(name: '55" Flatscreen', manufacturer: "Samsung", quantity: "8", category: "Video", sub_category: "Monitors", vendor:flatiron)
+Equipment.create(name: '60" Flatscreen', manufacturer: "Samsung", quantity: "8", category: "Video", sub_category: "Monitors", vendor:flatiron)
+Equipment.create(name: '65" Flatscreen', manufacturer: "Samsung", quantity: "8", category: "Video", sub_category: "Monitors", vendor:flatiron)
+Equipment.create(name: 'A2 Panel', manufacturer: "Absen", quantity: "400", category: "Video", sub_category: "LED Wall", vendor:flatiron)
+cable_lengths.each do |length|
+    Equipment.create(name: "#{length} HDMI", manufacturer: "N/A", quantity: (rand(50) + 1), category: "Video", sub_category: "Cables", vendor:flatiron)
+    Equipment.create(name: "#{length} DVI", manufacturer: "N/A", quantity: (rand(50) + 1), category: "Video", sub_category: "Cables", vendor:flatiron)
+    Equipment.create(name: "#{length} VGA", manufacturer: "N/A", quantity: (rand(50) + 1), category: "Video", sub_category: "Cables", vendor:flatiron)
+    Equipment.create(name: "#{length} DisplayPort", manufacturer: "N/A", quantity: (rand(50) + 1), category: "Video", sub_category: "Cables", vendor:flatiron)
+    Equipment.create(name: "#{length} SDI", manufacturer: "N/A", quantity: (rand(50) + 1), category: "Video", sub_category: "Cables", vendor:flatiron)
 end
+
 
 Show.all.each do |show|
     (rand(3) + 3).times do
@@ -56,6 +77,9 @@ Show.all.each do |show|
         EquipmentBooking.create(equipment: equipment, show: show, quantity: rand(equipment.quantity))
     end
 end
+
+
+# lolla = Show.create(name: "Lollapalooza", venue:"grant park", client: "C3", start: "2020-08-20", end: "2020-08-24 23:59:59", vendor_id: 1)
 
 # k2 = Equipment.create(name: "K2", manufacturer:"L-Acoustics", quantity: "24", category: "Audio", sub_category: "Speakers", vendor:flatiron)
 # ks28 = Equipment.create(name: "KS28", manufacturer:"L-Acoustics", quantity: "16", category: "Audio", sub_category: "Speakers", vendor:flatiron)
