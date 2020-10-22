@@ -3,6 +3,7 @@ class EquipmentController < ApplicationController
 
     def index
         @equipment = @current_user.vendor.equipment
+        @categories = @equipment.map {|e| e.category}.uniq        
     end
 
     def show
