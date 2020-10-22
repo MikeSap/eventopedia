@@ -1,7 +1,10 @@
 class SessionsController < ApplicationController
     skip_before_action :require_login, only: [:login, :create]
     
-    def index
+    def index      
+      @equipment_bookings = EquipmentBooking.where(show: current_user.vendor.shows).order('created_at desc').first(5)
+      @shows = current_user.vendor.shows.where(start: Date.today..(Date.today + 14.days)).order('start asc').first(5)
+      @equipment = current_user.vendor.equipment.order('created_at desc').first(5)
     end    
 
     def login
