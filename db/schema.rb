@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 2020_10_19_164322) do
     t.boolean "book_technician"
     t.boolean "book_equipment"
     t.boolean "bookable"
+    t.boolean "admin"
     t.integer "vendor_id"
     t.string "title"
     t.datetime "created_at", precision: 6, null: false

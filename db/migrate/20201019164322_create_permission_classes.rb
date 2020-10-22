@@ -7,6 +7,7 @@ class CreatePermissionClasses < ActiveRecord::Migration[6.0]
       t.boolean :book_technician
       t.boolean :book_equipment
       t.boolean :bookable
+      t.boolean :admin
       t.integer :vendor_id
       t.string :title
 

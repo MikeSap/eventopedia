@@ -27,6 +27,6 @@ class PermissionClassesController < ApplicationController
     private
 
     def pc_params
-        params.require(:permission_class).permit(:title, :vendor_id, :create_users, :create_equipment, :create_show, :book_equipment, :book_technician, :bookable)
+        params.require(:permission_class).permit(:title, :vendor_id, :create_users, :create_equipment, :create_show, :book_equipment, :book_technician, :bookable, :admin)
     end
 end

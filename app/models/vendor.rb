@@ -10,7 +10,7 @@ class Vendor < ApplicationRecord
     after_create :create_owner_permission
 
     def create_owner_permission
-        admin = PermissionClass.create(title: "admin", vendor: self, create_users: true, create_equipment:true, create_show:true, book_technician:true, book_equipment:true, bookable: false )
+        admin = PermissionClass.create(title: "admin", vendor: self, create_users: true, create_equipment:true, create_show:true, book_technician:true, book_equipment:true, bookable: false, admin: true )
     end
 
 end

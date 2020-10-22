@@ -33,7 +33,7 @@
               <li class="nav-item">
                 <a class="nav-link" href="/users">Staff</a>
               </li>
-              <% if @current_user.permission_class.title == 'admin'%>
+              <% if @current_user.permission_class.admin %>
                 <li class="nav-item">
                   <a class="nav-link" href="/vendors/<%= @current_user.vendor.id %>">Manage <%= @current_user.vendor.name %></a>
                 </li>
