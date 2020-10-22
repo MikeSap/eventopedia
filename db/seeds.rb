@@ -39,7 +39,8 @@ lolla = Show.create(name: "Lollapalooza", venue:"grant park", client: "C3", star
 50.times do
     first_day = Faker::Date.between(from: Date.today, to: (Date.today + 60))
     last_day = Faker::Date.between(from: first_day, to: (first_day + 3))
-    Show.create(name: Faker::Music.unique.band, venue: Faker::WorldCup.stadium, client: Faker::Company.unique.name, start: first_day, end: last_day, vendor_id: 1)
+    show_options = [Faker::Music.unique.band, "#{Faker::Game.title} World Championship" , "#{Faker::University.name} Graduation", "#{Faker::Movie.title} Premiere", "#{Faker::Restaurant.name} Grand Opening"]
+    Show.create(name: show_options[rand(5)], venue: Faker::WorldCup.stadium, client: Faker::Company.unique.name, start: first_day, end: last_day, vendor_id: 1)
 end
 
 50.times do
