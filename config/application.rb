@@ -13,6 +13,7 @@ module Eventopedia
     # Initialize configuration defaults for originally generated Rails version.
     
     config.load_defaults 6.0
+    config.time_zone = 'Central Time (US & Canada)'
 
     initializer(:remove_activestorage_routes, after: :add_routing_paths) {|app|
     app.routes_reloader.paths.delete_if {|path| path =~ /activestorage/ || path =~ /actionmailbox/}}
