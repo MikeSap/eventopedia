@@ -9,6 +9,7 @@ class TechnicianBookingsController < ApplicationController
 
     def create
         @show = Show.find(tb_params[:show_id])
+        @bookable_technicians = current_user.vendor.users.select{ |user| user.bookable? }.sort_by{|user| user.permission_class.title}
         @technician_booking = TechnicianBooking.new(tb_params)
         return render :new unless @technician_booking.save
         redirect_to show_path(tb_params[:show_id])

@@ -11,9 +11,9 @@
   <h3>Add Tech to <%= @show.name %>:</h3>
   <%= f.collection_select :user_id, @bookable_technicians, :id, :full_name_and_title %><br>
   <%= f.label :call_time%>
-  <%= f.datetime_field :call_time%><br>
+  <%= f.datetime_field :call_time, min: @show.start, max: @show.end%><br>
   <%= f.label :out_time%>
-  <%= f.datetime_field :out_time%>
+  <%= f.datetime_field :out_time, min: @show.start, max: @show.end%>
   <%= f.hidden_field :show_id, value: @show.id %><br>
   <%= f.submit %>
 <% end %>

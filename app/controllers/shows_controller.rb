@@ -2,7 +2,7 @@ class ShowsController < ApplicationController
     before_action :can_create_show, only: [:new, :create, :edit, :destroy]
     
     def index
-        @shows = current_user.vendor.shows
+        @shows = current_user.vendor.shows.order(:start)
     end
 
     def show

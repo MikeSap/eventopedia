@@ -36,10 +36,10 @@ end
 
 
 lolla = Show.create(name: "Lollapalooza", venue:"grant park", client: "C3", start: "2020-08-20", end: "2020-08-24 23:59:59", vendor_id: 1)
-10.times do
-    first_day = Faker::Date.between(from: Date.today, to: (Date.today + 7))
+50.times do
+    first_day = Faker::Date.between(from: Date.today, to: (Date.today + 60))
     last_day = Faker::Date.between(from: first_day, to: (first_day + 3))
-    Show.create(name: Faker::Music.unique.band, venue: Faker::WorldCup.unique.stadium, client: Faker::Company.unique.name, start: first_day, end: last_day, vendor_id: 1)
+    Show.create(name: Faker::Music.unique.band, venue: Faker::WorldCup.stadium, client: Faker::Company.unique.name, start: first_day, end: last_day, vendor_id: 1)
 end
 
 50.times do
