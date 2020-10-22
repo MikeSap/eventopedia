@@ -1,14 +1,13 @@
 class TechnicianBookingsController < ApplicationController
     before_action :can_book_tech
     
-    def new
-        @technician_booking = TechnicianBooking.new
+    def new        
         @bookable_technicians = current_user.vendor.users.select{ |user| user.bookable? }.sort_by{|user| user.permission_class.title}
         @show = Show.find(params[:show_id])
+        @technician_booking = TechnicianBooking.new(call_time: @show.start, out_time: @show.end)
     end
 
     def create
-        byebug
         @show = Show.find(tb_params[:show_id])
         @technician_booking = TechnicianBooking.new(tb_params)
         @bookable_technicians = current_user.vendor.users.select{ |user| user.bookable? }.sort_by{|user| user.permission_class.title}

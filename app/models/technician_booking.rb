@@ -8,7 +8,6 @@ class TechnicianBooking < ApplicationRecord
     def tech_availability        
         bookings = self.user.technician_bookings.map {|booking| {call_time: booking.call_time, out_time: booking.out_time}}
         bool = bookings.all? do |schedule|
-            byebug
             ((schedule[:call_time].to_date..schedule[:out_time].to_date).to_a & (self.call_time.to_date..self.out_time.to_date).to_a).empty?
         end
         errors.add(:technician, "is unavailable at that time") unless bool

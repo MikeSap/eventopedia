@@ -10,7 +10,7 @@ class ShowsController < ApplicationController
     end
 
     def new
-        @show = Show.new
+        @show = Show.new(start: Time.now, end: Time.now)
     end
 
     def create
