@@ -33,7 +33,9 @@
                     <tr>
                         <td><%= pc.title %></td>
                         <td><%= link_to 'edit', edit_permission_class_path(pc) %></td>
-                        <td><%= link_to 'delete', permission_class_path(pc), method: 'delete' %></td>
+                        <td><% if pc.users.count == 0%>
+                        <%= link_to 'delete', permission_class_path(pc), method: 'delete' %>
+                        <% end %></td>
                     </tr>
                 <% end %>
             </table>

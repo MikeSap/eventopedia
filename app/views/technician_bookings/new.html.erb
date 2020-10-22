@@ -9,7 +9,7 @@
 
 <%= form_for @technician_booking do |f| %>
   <h3>Add Tech to <%= @show.name %>:</h3>
-  <%= f.collection_select :user_id, @current_user.vendor.users, :id, :username %><br>
+  <%= f.collection_select :user_id, @current_user.vendor.users, :id, :full_name %><br>
   <%= f.label :call_time%>
   <%= f.datetime_field :call_time%><br>
   <%= f.label :out_time%>
