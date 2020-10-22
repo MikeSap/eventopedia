@@ -1,8 +1,8 @@
-<div class= "error">
-    <% if !flash[:alert].nil? %> 
-    <%= flash[:alert] %>
-    <% end %>
-</div>
+<% if !flash[:alert].nil? %> 
+   <div class= "alert alert-danger">
+   <%= flash[:alert] %>
+   </div>
+<% end %>
 
 <table table class="table table-striped table-bordered table-sm">
     <thead class="thead-dark">

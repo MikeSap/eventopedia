@@ -2,11 +2,11 @@
   <h1>Welcome to Eventopedia<% if @current_user.id != nil %><%= ", #{@current_user.username}"%><% end %>.</h1>
 </div>
 
-  <div class= "d-flex justify-content-center text-danger">
   <% if !flash[:alert].nil? %> 
+  <div class= "d-flex justify-content-center alert alert-danger">
     <%= flash[:alert] %>
+   </div>
   <% end %>
-  </div>
 
 <div class="d-flex justify-content-center text-center">
   <%= form_for :user do |f| %>

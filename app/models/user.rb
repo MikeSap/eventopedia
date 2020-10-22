@@ -5,9 +5,8 @@ class User < ApplicationRecord
     has_many :shows, through: :technician_bookings
 
     validates :username, :first_name, :last_name, :password, :permission_class, :vendor_id, presence: true
-    validates :username, uniqueness: {scope: :vendor_id, message: "has been taken by one of your coworkers already!"}
-
-    
+    validates :username, uniqueness: {scope: :vendor_id, message: "is already in use by someone at your company"}
+        
     has_secure_password
     
     def full_name

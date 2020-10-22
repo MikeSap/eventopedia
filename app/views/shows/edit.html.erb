@@ -1,5 +1,5 @@
 <% if @show.errors.any? %>
-        <ul>
+        <ul class= "alert alert-danger">
           <% @show.errors.full_messages.each do |msg| %>
             <li><%= msg %></li>
           <% end %>
