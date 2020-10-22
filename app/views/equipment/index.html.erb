@@ -21,7 +21,7 @@
 </tbody>
 </table>
 <%if @permission.create_equipment %>
-<%= link_to 'Add Equipment', new_equipment_path %>
+<%= link_to "Add #{cat} Equipment", new_equipment_path(category: cat) %>
 <%end%>
 
 <%end%>

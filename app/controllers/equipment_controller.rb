@@ -10,8 +10,8 @@ class EquipmentController < ApplicationController
         @equipment = Equipment.find(params[:id])
     end
 
-    def new
-        @equipment = Equipment.new
+    def new        
+        @equipment = Equipment.new(category: params[:category])
     end
 
     def create
