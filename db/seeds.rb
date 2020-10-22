@@ -8,7 +8,7 @@
 
 require 'faker'
 
-flatiron = Vendor.create(name:"Flatiron AV", address: "515 N State St, Chicago, IL 60654", url:"https://flatironschool.com/", phone_number:"312-500-4049", contact_email: "info@flatironschool.com/")
+flatiron = Vendor.create(name:"Flatiron AV", address: "515 N State St, Chicago, IL 60654", url:"https://flatironschool.com/", phone_number:"312-500-4049", contact_email: "info@flatironschool.com")
 
 v1 = PermissionClass.create(title: "V1", vendor:flatiron, create_users: false, create_equipment:false, create_show:false, book_technician:false, book_equipment:true, bookable:true )
 v2 = PermissionClass.create(title: "V2", vendor:flatiron, create_users: false, create_equipment:false, create_show:false, book_technician:false, book_equipment:true, bookable:true )
