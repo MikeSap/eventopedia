@@ -20,7 +20,7 @@ class UsersController < ApplicationController
 
     def show        
         @user = User.find(params[:id])  
-        @gigs = @user.technician_bookings.order(:start)        
+        @gigs = @user.technician_bookings.order(:call_time)        
     end
 
     def edit
