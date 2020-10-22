@@ -6,23 +6,59 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-si = Vendor.create(name:"Sound Investment", address: "123 Main St.", url:"www.sound-investment.com", phone_number:"312-666-4200", contact_email: "eventopedia@soundinvestment.com")
+require 'faker'
 
-tech = PermissionClass.create(title: "tech", vendor:si, create_users: false, create_equipment:false, create_show:false, book_technician:false, book_equipment:true, bookable:true )
-ware = PermissionClass.create(title: "warehouse", vendor:si, create_users: false, create_equipment:true, create_show:false, book_technician:false, book_equipment:true, bookable:false )
+flatiron = Vendor.create(name:"Flatiron AV", address: "515 N State St, Chicago, IL 60654", url:"https://flatironschool.com/", phone_number:"312-500-4049", contact_email: "info@flatironschool.com/")
 
-peter = User.create(username:"peter", first_name: 'Peter', last_name: 'Vanek', password: "123", password_confirmation: "123", permission_class_id: 1, vendor: si)
-mike = User.create(username:"mike", first_name: 'Mike', last_name: 'Sapienza', password: "123", password_confirmation: "123", permission_class:tech, vendor:si)
-tom = User.create(username:"tom", first_name: 'Tom', last_name: 'Bigelow', password: "123", password_confirmation: "123", permission_class:tech, vendor:si)
-marc = User.create(username:"marc", first_name: 'Marc', last_name: 'Ecco', password: "123", password_confirmation: "123", permission_class: ware, vendor:si)
+v1 = PermissionClass.create(title: "V1", vendor:flatiron, create_users: false, create_equipment:false, create_show:false, book_technician:false, book_equipment:true, bookable:true )
+v2 = PermissionClass.create(title: "V2", vendor:flatiron, create_users: false, create_equipment:false, create_show:false, book_technician:false, book_equipment:true, bookable:true )
+a1 = PermissionClass.create(title: "A1", vendor:flatiron, create_users: false, create_equipment:false, create_show:false, book_technician:false, book_equipment:true, bookable:true )
+a2 = PermissionClass.create(title: "A2", vendor:flatiron, create_users: false, create_equipment:false, create_show:false, book_technician:false, book_equipment:true, bookable:true )
+l1 = PermissionClass.create(title: "L1", vendor:flatiron, create_users: false, create_equipment:false, create_show:false, book_technician:false, book_equipment:true, bookable:true )
+l2 = PermissionClass.create(title: "L2", vendor:flatiron, create_users: false, create_equipment:false, create_show:false, book_technician:false, book_equipment:true, bookable:true )
 
-k2 = Equipment.create(name: "K2", manufacturer:"L-Acoustics", quantity: "24", category: "Audio", sub_category: "Speakers", vendor: si)
-ks28 = Equipment.create(name: "KS28", manufacturer:"L-Acoustics", quantity: "16", category: "Audio", sub_category: "Speakers", vendor: si)
+vwarehouse = PermissionClass.create(title: "Video Shop Supervisor", vendor:flatiron, create_users: false, create_equipment:true, create_show:false, book_technician:false, book_equipment:true, bookable:false )
+awarehouse = PermissionClass.create(title: "Audio Shop Supervisor", vendor:flatiron, create_users: false, create_equipment:true, create_show:false, book_technician:false, book_equipment:true, bookable:false )
+lwarehouse = PermissionClass.create(title: "Lighting Shop Supervisor", vendor:flatiron, create_users: false, create_equipment:true, create_show:false, book_technician:false, book_equipment:true, bookable:false )
+
+pm = PermissionClass.create(title: "Project Manager", vendor:flatiron, create_users: false, create_equipment:true, create_show:true, book_technician:true, book_equipment:true, bookable:false )
+sales = PermissionClass.create(title: "Sales Representative", vendor:flatiron, create_users: false, create_equipment:false, create_show:true, book_technician:false, book_equipment:false, bookable:false )
+
+tom = User.create(username:"tbigelow", first_name: 'Tom', last_name: 'Bigelow', password: "123", password_confirmation: "123", permission_class_id: 1, vendor:flatiron)
+mike = User.create(username:"msapienza", first_name: 'Mike', last_name: 'Sapienza', password: "123", password_confirmation: "123", permission_class_id: 1, vendor:flatiron)
+
+[v1, a1, l1, v2, a2, l2, vwarehouse, awarehouse, lwarehouse, pm, sales].each do |role|
+    first_name = Faker::Name.first_name
+    last_name = Faker::Name.last_name
+    username = "#{first_name.chars.first}#{last_name}".downcase
+    User.create(username:username, first_name: first_name, last_name: last_name, password: "123", password_confirmation: "123", permission_class: role, vendor:flatiron)
+end
+
 
 lolla = Show.create(name: "Lollapalooza", venue:"grant park", client: "C3", start: "2020-08-20", end: "2020-08-24 23:59:59", vendor_id: 1)
+10.times do
+    first_day = Faker::Date.between(from: Date.today, to: (Date.today + 7))
+    last_day = Faker::Date.between(from: first_day, to: (first_day + 3))
+    Show.create(name: Faker::Music.unique.band, venue: Faker::WorldCup.unique.stadium, client: Faker::Company.unique.name, start: first_day, end: last_day, vendor_id: 1)
+end
 
-mikeday1 = TechnicianBooking.create(user: mike, show: lolla, call_time:"2020-08-20 02:00:00", out_time: "2020-08-20 22:00:00")
-mikeday2 = TechnicianBooking.create(user: mike, show: lolla, call_time:"2020-08-21 02:00:00", out_time: "2020-08-21 22:00:00")
-tomday1 = TechnicianBooking.create(user: tom, show: lolla, call_time:"2020-08-20 02:00:00", out_time: "2020-08-20 22:00:00")
+50.times do
+    Equipment.create(name: "#{Faker::Music.genre} #{Faker::Music.instrument}", manufacturer: Faker::Device.manufacturer, quantity: "#{rand(50) + 1}", category: Faker::IndustrySegments.industry, sub_category: Faker::IndustrySegments.sub_sector, vendor:flatiron)
+end
+
+Show.all.each do |show|
+    (rand(3) + 3).times do
+        user = User.all.select {|user| user.permission_class.bookable }.sample
+        TechnicianBooking.create(user: user, show: show, call_time:show.start, out_time:show.end)
+        EquipmentBooking.create(equipment_id: (rand(50) + 1), show: show)
+    end
+end
+
+# k2 = Equipment.create(name: "K2", manufacturer:"L-Acoustics", quantity: "24", category: "Audio", sub_category: "Speakers", vendor:flatiron)
+# ks28 = Equipment.create(name: "KS28", manufacturer:"L-Acoustics", quantity: "16", category: "Audio", sub_category: "Speakers", vendor:flatiron)
+
+# mikeday1 = TechnicianBooking.create(user: mike, show: lolla, call_time:"2020-08-20 02:00:00", out_time: "2020-08-20 22:00:00")
+# mikeday2 = TechnicianBooking.create(user: mike, show: lolla, call_time:"2020-08-21 02:00:00", out_time: "2020-08-21 22:00:00")
+# tomday1 = TechnicianBooking.create(user: tom, show: lolla, call_time:"2020-08-20 02:00:00", out_time: "2020-08-20 22:00:00")
 
 # lolla.equipment.push(k2,ks28)
