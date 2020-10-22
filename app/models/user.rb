@@ -13,4 +13,12 @@ class User < ApplicationRecord
     def full_name
         "#{self.first_name} #{self.last_name}"
     end
+
+    def full_name_and_title
+        "#{self.permission_class.title} - #{self.full_name}"
+    end
+
+    def bookable?
+        self.permission_class.bookable
+    end
 end

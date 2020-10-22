@@ -3,7 +3,7 @@ class TechnicianBookingsController < ApplicationController
     
     def new
         @technician_booking = TechnicianBooking.new
-        @bookable_technicians = current_user.vendor.users.select{|user| user.permission_class.bookable}
+        @bookable_technicians = current_user.vendor.users.select{ |user| user.bookable? }.sort_by{|user| user.permission_class.title}
         @show = Show.find(params[:show_id])
     end
 
