@@ -49,7 +49,7 @@
                 <tr>
                     <td><%= link_to "#{e.name}", equipment_path(e) %></td> 
                     <td><%= e.quantity %></td>  
-                    <td><%= e.created_at %></td>                          
+                    <td><%= e.created_at_display %></td>                          
                 </tr>
                 </tbody>
                 <% end %>
@@ -73,7 +73,7 @@
                     <td><%= link_to e.show.name, show_path(e.show) %>
                     <td><%= link_to e.equipment.name, equipment_path(e.equipment) %></td> 
                     <td><%= e.quantity %></td>  
-                    <td><%= e.created_at %></td>                          
+                    <td><%= e.created_at_display %></td>                          
                 </tr>
                 </tbody>
                 <% end %>

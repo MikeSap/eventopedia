@@ -18,4 +18,8 @@ class EquipmentBooking < ApplicationRecord
     def quantity_max?
         self.quantity >= self.show.vendor.equipment.find(self.equipment_id).quantity
     end
+
+    def created_at_display
+        self.created_at.localtime.strftime("%b %-d %Y %l:%M %p")
+    end
 end

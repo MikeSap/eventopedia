@@ -5,4 +5,8 @@ class Equipment < ApplicationRecord
 
     validates :name, :quantity, :category, :sub_category, :vendor, presence: true
     validates_uniqueness_of :name, scope: :category 
+
+    def created_at_display
+        self.created_at.localtime.strftime("%b %-d %Y %l:%M %p")
+    end
 end
