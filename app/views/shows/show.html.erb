@@ -40,6 +40,8 @@
                 <thead class="thead-dark">
                 <tr>
                     <th>Equipment Name</th>
+                    <th>Category</th>
+                    <th>Sub-Category</th>
                     <th>Quantity</th>
                     <%if @permission.book_equipment%>
                     <th></th>
@@ -51,6 +53,8 @@
                 <% @show.equipment_bookings.each do |e|%>
                 <tr>
                     <td><%= link_to "#{e.equipment.name}", equipment_path(e.equipment) %></td>
+                    <td><%= e.equipment.category %></td>
+                    <td><%= e.equipment.sub_category %></td>
                     <td>
                         <div style="float: left; width: auto;">
                         <%= button_to '-', equipment_booking_path(e), params: {increment: -1}, disabled: e.quantity_min?, class: 'btn btn-sm btn-outline-secondary' %>

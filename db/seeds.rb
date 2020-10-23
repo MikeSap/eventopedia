@@ -41,6 +41,7 @@ end
 # end
 
 cable_lengths = ["10'", "25'", "50'", "100'"]
+cable_manufacturers = %w(Gepco Neutrik Mogami Whirlwind LEX)
 
 Equipment.create(name: "Boxer 4k30", manufacturer: "Christie", quantity: "3", category: "Video", sub_category: "Projectors", vendor:flatiron)
 Equipment.create(name: "RLS-W12", manufacturer: "Barco", quantity: "8", category: "Video", sub_category: "Projectors", vendor:flatiron)
@@ -53,21 +54,20 @@ Equipment.create(name: '60" Flatscreen', manufacturer: "Samsung", quantity: "8",
 Equipment.create(name: '65" Flatscreen', manufacturer: "Samsung", quantity: "8", category: "Video", sub_category: "Monitors", vendor:flatiron)
 Equipment.create(name: 'A2 Panel', manufacturer: "Absen", quantity: "400", category: "Video", sub_category: "LED Wall", vendor:flatiron)
 cable_lengths.each do |length|
-    Equipment.create(name: "#{length} HDMI", manufacturer: "N/A", quantity: (rand(50) + 1), category: "Video", sub_category: "Cables", vendor:flatiron)
-    Equipment.create(name: "#{length} DVI", manufacturer: "N/A", quantity: (rand(50) + 1), category: "Video", sub_category: "Cables", vendor:flatiron)
-    Equipment.create(name: "#{length} VGA", manufacturer: "N/A", quantity: (rand(50) + 1), category: "Video", sub_category: "Cables", vendor:flatiron)
-    Equipment.create(name: "#{length} DisplayPort", manufacturer: "N/A", quantity: (rand(50) + 1), category: "Video", sub_category: "Cables", vendor:flatiron)
-    Equipment.create(name: "#{length} SDI", manufacturer: "N/A", quantity: (rand(50) + 1), category: "Video", sub_category: "Cables", vendor:flatiron)
+    Equipment.create(name: "#{length} HDMI", manufacturer: cable_manufacturers.sample, quantity: (rand(50) + 1), category: "Video", sub_category: "Cables", vendor:flatiron)
+    Equipment.create(name: "#{length} DVI", manufacturer: cable_manufacturers.sample, quantity: (rand(50) + 1), category: "Video", sub_category: "Cables", vendor:flatiron)
+    Equipment.create(name: "#{length} VGA", manufacturer: cable_manufacturers.sample, quantity: (rand(50) + 1), category: "Video", sub_category: "Cables", vendor:flatiron)
+    Equipment.create(name: "#{length} DisplayPort", manufacturer: cable_manufacturers.sample, quantity: (rand(50) + 1), category: "Video", sub_category: "Cables", vendor:flatiron)
+    Equipment.create(name: "#{length} SDI", manufacturer: cable_manufacturers.sample, quantity: (rand(50) + 1), category: "Video", sub_category: "Cables", vendor:flatiron)
 end
 
 ##audio seed
 speaker_manufacturers = %w(L-Acoustics Martin\ Audio D&B\ Audiotechnik Meyer\ Sound Void\ Acoustics Funktion-One JBL EAW)
 console_manufacturers = %w(Digico Avid Yamaha Soundcraft Midas)
-cable_manufacturers = %w(Gepco Neutrik Mogami Whirlwind LEX)
 line_array = %w(K1 K2 Lyon Leo Leopard V-Dosc DV-DOSC V J KSL W Q Vertec VRX)
 subwoofer = %w(SB18 1100 KS28 VLFC 700-HP 500-HP 218 F-21 J-SUB V-SUB)
 console = %w(SD10 SD11 SD9 SD7 Profile SC48 VI-4 VI-6 Pro-2 Pro-X S6L M32)
-wedge = %w(Micro/ Wedge M4 M2 MJF-210 MJF-212)
+wedge = %w(Micro\ Wedge M4 M2 MJF-210 MJF-212)
 cable_types = %w(XLR NL4 NL8 Fiber\ Reel BNC XLR-5 L14-30 L21-30 Socapex)
 #sub_categories = %w(Line\ Array Subwoofer Wedge Mixing\ Console)
 cable = %w(5 10 25 50 100 150 250 328)
@@ -127,8 +127,10 @@ end
 Show.all.each do |show|
     (rand(3) + 3).times do
         user = User.all.select {|user| user.permission_class.bookable }.sample
-        equipment = Equipment.find(rand(Equipment.all.length) + 1)
         TechnicianBooking.create(user: user, show: show, call_time:show.start, out_time:show.end)
+    end
+    (rand(10) + 3).times do
+        equipment = Equipment.find(rand(Equipment.all.length) + 1)
         EquipmentBooking.create(equipment: equipment, show: show, quantity: rand(equipment.quantity))
     end
 end

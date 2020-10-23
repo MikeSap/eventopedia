@@ -4,7 +4,7 @@ class Equipment < ApplicationRecord
     has_many :shows, through: :equipment_bookings
 
     validates :name, :quantity, :category, :sub_category, :vendor, presence: true
-    validates_uniqueness_of :name, scope: :category 
+    validates_uniqueness_of :name, scope: :manufacturer 
 
     def created_at_display
         self.created_at.localtime.strftime("%b %-d %Y %l:%M %p")
