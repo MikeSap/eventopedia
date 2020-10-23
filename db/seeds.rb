@@ -70,11 +70,11 @@ end
 
 ##audio seed
 speaker_manufacturers = %w(L-Acoustics Martin\ Audio D&B\ Audiotechnik Meyer\ Sound Void\ Acoustics Funktion-One JBL EAW)
-console_manufacturers = %w(Digico Avid Yamaha Soundcraft)
+console_manufacturers = %w(Digico Avid Yamaha Soundcraft Midas)
 cable_manufacturers = %w(Gepco Neutrik Mogami Whirlwind LEX)
 line_array = %w(K1 K2 Lyon Leo Leopard V-Dosc DV-DOSC V J KSL W Q Vertec VRX)
 subwoofer = %w(SB18 1100 KS28 VLFC 700-HP 500-HP 218 F-21 J-SUB V-SUB)
-console = %w(SD10 SD11 SD9 SD7 Profile SC48 VI-4 VI-6 )
+console = %w(SD10 SD11 SD9 SD7 Profile SC48 VI-4 VI-6 Pro-2 Pro-X S6L M32)
 wedge = %w(Micro/ Wedge M4 M2 MJF-210 MJF-212)
 cable_types = %w(XLR NL4 NL8 Fiber\ Reel BNC XLR-5 L14-30 L21-30 Socapex)
 #sub_categories = %w(Line\ Array Subwoofer Wedge Mixing\ Console)
