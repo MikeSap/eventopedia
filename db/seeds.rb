@@ -1,11 +1,3 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
-
 require 'faker'
 
 flatiron = Vendor.create(name:"Flatiron AV", address: "515 N State St, Chicago, IL 60654", url:"https://flatironschool.com/", phone_number:"312-500-4049", contact_email: "info@flatironschool.com")
@@ -40,7 +32,7 @@ end
     first_day = Faker::Time.between_dates(from: Date.today, to: (Date.today + 60), period: :morning)
     last_day = Faker::Time.between_dates(from: first_day, to: (first_day + 3), period: :night)
     show_options = [Faker::Music.unique.band, "#{Faker::Game.title} World Championship" , "#{Faker::University.name} Graduation", "#{Faker::Movie.title} Premiere", "#{Faker::Restaurant.name} Grand Opening"]
-    Show.create(name: show_options[rand(5)], venue: Faker::WorldCup.stadium, client: Faker::Company.unique.name, start: first_day, end: last_day, vendor_id: 1)
+    Show.create(name: show_options.sample, venue: Faker::WorldCup.stadium, client: Faker::Company.unique.name, start: first_day, end: last_day, vendor_id: 1)
 end
 
 # 50.times do

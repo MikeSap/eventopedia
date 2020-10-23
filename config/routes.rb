@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root 'sessions#index'
 
-  resources :permission_classes, only: [:new, :create, :edit, :update, :destroy]
+  resources :permission_classes, only: [:index, :new, :create, :edit, :update, :destroy]
   resources :technician_bookings, only: [:new, :create, :destroy], path_names: {new: 'new/:show_id' }
   resources :equipment_bookings, only: [:new, :create, :destroy], path_names: {new: 'new/:show_id' }
   resources :equipment
@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   post '/logout' => 'sessions#destroy'
   get '/logout' => 'sessions#destroy'
   post '/equipment_bookings/:id' => 'equipment_bookings#increment'
+  post '/permission_classes/set_permissions' => 'permission_classes#set_permissions'
 
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

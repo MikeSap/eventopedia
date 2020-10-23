@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-    before_action :current_user, :permission
+    before_action :current_user, :users, :permission
     before_action :require_login
 
 
@@ -17,6 +17,14 @@ class ApplicationController < ActionController::Base
 
     def permission
      @permission = @current_user.permission_class
+    end
+
+    def admin?
+      @current_user.permission_class.admin
+    end
+
+    def users
+      @users = @current_user.vendor.users
     end
 
     # def vendor_verification

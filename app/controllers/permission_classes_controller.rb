@@ -1,4 +1,11 @@
 class PermissionClassesController < ApplicationController
+    before_action :require_login, :admin?
+    
+    def index
+        @users 
+        @permission_classes = @current_user.vendor.permission_classes
+    end
+    
     def new
         @permission_class = PermissionClass.new
     end
@@ -22,6 +29,10 @@ class PermissionClassesController < ApplicationController
     def destroy
         PermissionClass.find(params[:id]).destroy
         redirect_to request.referrer
+    end
+
+    def set_permissions
+        byebug
     end
 
     private

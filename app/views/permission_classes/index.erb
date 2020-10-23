@@ -1,0 +1,17 @@
+<%= form_for  :user, url: '/permission_classes/set_permissions' do |f| %>
+   
+   <%@users.each do |user|%>
+    <%=fields_for user do |user_field|%>
+
+    <%= user_field.label user.full_name %>
+    <%= user_field.hidden_field :user_id, value: user.id %><br>
+    <%= user_field.collection_select :permission_class_id, @permission_classes, :id, :title %><br>
+    <br>
+    <%end%>
+    <%end%>
+
+    <%= f.hidden_field :vendor_id, value: @current_user.vendor.id %><br>
+
+    <%=f.submit%>
+
+    <%end%>
