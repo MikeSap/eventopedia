@@ -69,6 +69,39 @@ cable_lengths.each do |length|
 end
 
 
+speaker_manufacturers = %w(L-Acoustics Martin\ Audio D&B\ Audiotechnik Meyer\ Sound Void\ Acoustics Funktion-One JBL EAW)
+console_manufacturers = %w(Digico Avid Yamaha Soundcraft)
+cable_manufacturers = %w(Gepco Neutrik Mogami Whirlwind)
+line_array = %w(K1 K2 Lyon Leo Leopard V-Dosc DV-DOSC V J KSL W Q Vertec VRX)
+subwoofer = %w(SB18 1100 KS28 VLFC 700-HP 500-HP BOOM/ BOOM 218 F-21 J-SUB V-SUB)
+console = %w(SD10 SD11 SD9 SD7 Profile SC48 VI-4 VI-6 )
+wedge = %w(Micro/ Wedge M4 M2 MJF-210 MJF-212)
+cable_types = %w(XLR NL4 NL8 Fiber\ Reel BNC XLR-5 L14-30 L21-30 Socapex)
+sub_categories = %w(Line\ Array Subwoofer Wedge Mixing\ Console)
+cable = %w(5 10 25 50 100 150 250 328)
+10.times do
+    Equipment.create(name: line_array.sample, manufacturer: speaker_manufacturers.sample, quantity: (rand(50) + 1), category: 'Audio', sub_category: 'Line Array', vendor: flatiron)
+end
+
+10.times do
+    Equipment.create(name: subwoofer.sample, manufacturer: speaker_manufacturers.sample, quantity: (rand(50) + 1), category: 'Audio', sub_category: 'Subwoofer', vendor: flatiron)
+end
+
+10.times do
+    Equipment.create(name: console.sample, manufacturer: console_manufacturers.sample, quantity: (rand(50) + 1), category: 'Audio', sub_category: 'Mixing Console', vendor: flatiron)
+end
+
+10.times do
+    Equipment.create(name: wedge.sample, manufacturer: speaker_manufacturers.sample, quantity: (rand(50) + 1), category: 'Audio', sub_category: 'Monitor Wedge', vendor: flatiron)
+end
+
+25.times do
+    Equipment.create(name: "#{cable.sample}' #{cable_types.sample}", manufacturer: cable_manufacturers.sample, quantity: (rand(50) + 1), category: 'Audio', sub_category: 'Cable', vendor: flatiron)
+end
+
+
+
+
 Show.all.each do |show|
     (rand(3) + 3).times do
         user = User.all.select {|user| user.permission_class.bookable }.sample
@@ -77,6 +110,21 @@ Show.all.each do |show|
         EquipmentBooking.create(equipment: equipment, show: show, quantity: rand(equipment.quantity))
     end
 end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 # lolla = Show.create(name: "Lollapalooza", venue:"grant park", client: "C3", start: "2020-08-20", end: "2020-08-24 23:59:59", vendor_id: 1)

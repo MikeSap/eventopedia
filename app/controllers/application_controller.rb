@@ -19,4 +19,8 @@ class ApplicationController < ActionController::Base
      @permission = @current_user.permission_class
     end
 
+    # def vendor_verification
+    #   if current_user.vendor != 
+    # end
+
 end

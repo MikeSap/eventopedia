@@ -5,6 +5,7 @@
     <thead class="thead-dark">
         <tr>
             <th>Equipment Name</th>
+            <th>Manufacturer</th>
             <th>Quantity Owned</th>
             <th>Category</th>
             <th>SubCategory</th>
@@ -14,6 +15,7 @@
 <% @equipment.where(category: cat).each do |e| %>
     <tr> 
     <td><%= link_to e.name, equipment_path(e) %></td>
+    <td> <%= e.manufacturer%> </td>
     <td> <%= e.quantity %> </td>
     <td> <%= e.category %> </td>
     <td> <%= e.sub_category %> </td>
