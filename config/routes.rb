@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   post '/logout' => 'sessions#destroy'
   get '/logout' => 'sessions#destroy'
   post '/equipment_bookings/:id' => 'equipment_bookings#increment'
-  post '/permission_classes/set_permissions' => 'permission_classes#set_permissions'
+  post '/users/set_permissions' => 'users#set_permissions'
 
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

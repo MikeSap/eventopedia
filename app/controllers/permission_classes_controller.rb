@@ -31,10 +31,6 @@ class PermissionClassesController < ApplicationController
         redirect_to request.referrer
     end
 
-    def set_permissions
-        byebug
-    end
-
     private
 
     def pc_params

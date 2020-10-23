@@ -7,9 +7,9 @@
    </thead>
    <tbody>
    <%@users.each do |user|%>
-      <%= form_with model: user, url: 'permission_classes/set_permissions' do |f| %>
          <tr>
-            <%= f.hidden_field :vendor_id, value: @current_user.vendor.id %>
+            <%= form_with model: user, url: 'users/set_title' do |f| %>
+            <%= f.hidden_field :id, value: user.id %>
             <td>
                <%= f.label user.full_name, "#{user.full_name}" %>
             </td>
@@ -20,7 +20,5 @@
          </tr>
       <%end%>
     <%end%>
-</tbody>
+   </tbody>
 </table>
-
-
