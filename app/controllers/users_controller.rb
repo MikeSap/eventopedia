@@ -3,7 +3,7 @@ class UsersController < ApplicationController
     # before_action :verify_self, only: [:update, :edit]
 
     def index
-        @users
+        users
     end
 
     def new        

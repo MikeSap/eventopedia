@@ -6,7 +6,7 @@ class Show < ApplicationRecord
     has_many :users, through: :technician_bookings
 
     validates :name, :venue, :client, :start, :end, presence: true
-
+    validates_uniqueness_of :name
     def start_display
         self.start.localtime.strftime("%b %-d %Y %l:%M %p")
     end

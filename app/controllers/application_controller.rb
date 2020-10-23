@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-    before_action :current_user, :users, :permission
+    before_action :current_user, :permission
     before_action :require_login
 
 

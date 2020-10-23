@@ -2,7 +2,7 @@ class PermissionClassesController < ApplicationController
     before_action :require_login, :admin?
     
     def index
-        @users 
+        users 
         @permission_classes = @current_user.vendor.permission_classes
     end
     
