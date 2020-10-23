@@ -19,6 +19,14 @@ class ApplicationController < ActionController::Base
      @permission = @current_user.permission_class
     end
 
+    def admin?
+      @current_user.permission_class.admin
+    end
+
+    def users
+      @users = @current_user.vendor.users
+    end
+
     # def vendor_verification
     #   if current_user.vendor != 
     # end

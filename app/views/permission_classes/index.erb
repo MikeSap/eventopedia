@@ -1,0 +1,18 @@
+<%@users.each do |user|%>
+   <%= form_with model: user, url: 'users/set_title' do |f| %>
+      <div>
+         <table>
+            <tr>
+               <%= f.hidden_field :id, value: user.id %>
+               <td>
+                  <%= f.label user.full_name, "#{user.full_name}" %>
+               </td>
+               <td>
+                  <%= f.collection_select :permission_class_id, @permission_classes, :id, :title %>
+               </td>
+               <td><%=f.submit%></td>
+            </tr>
+         </table>
+      </div>
+   <% end %>
+<% end %>

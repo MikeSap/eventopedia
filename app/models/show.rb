@@ -7,7 +7,6 @@ class Show < ApplicationRecord
 
     validates :name, :venue, :client, :start, :end, presence: true
     validates_uniqueness_of :name
-
     def start_display
         self.start.localtime.strftime("%b %-d %Y %l:%M %p")
     end

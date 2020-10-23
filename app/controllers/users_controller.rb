@@ -3,7 +3,7 @@ class UsersController < ApplicationController
     # before_action :verify_self, only: [:update, :edit]
 
     def index
-        @users = @current_user.vendor.users
+        users
     end
 
     def new        
@@ -31,6 +31,11 @@ class UsersController < ApplicationController
     end
 
     def update
+        if params[:id] == 'set_title'
+            user = User.find(permission_params[:id])
+            user.update_attribute(:permission_class_id, permission_params[:permission_class_id])
+            return render permission_classes_path
+        end
         @user = User.find(params[:id])
         @permissions = @user.vendor.permission_classes
         return render :edit unless @user.update(user_params)
@@ -47,6 +52,10 @@ class UsersController < ApplicationController
     
     def user_params
       params.require(:user).permit(:username, :first_name, :last_name, :password, :password_confirmation, :permission_class_id)
+    end
+
+    def permission_params
+        params.require(:user).permit(:permission_class_id, :id)
     end
 
     def can_create_users
